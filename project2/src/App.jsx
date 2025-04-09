@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
+import Registrazione from "./components/Registrazione";
+import Carrello from "./components/Carrello";
+import Beauty from "./components/Beauty";
+import MenShoes from "./components/MenShoes";
+import Sunglasses from "./components/Sunglasses";
+import Watches from "./components/Watches";
+import WomenJewellery from "./components/WomenJewellery";
+import Login from "./components/Login";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/registrazione" element={<Registrazione />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/carrello" element={<Carrello />}></Route>
+        <Route path="/beauty" element={<Beauty />}></Route>
+        <Route path="/menshoes" element={<MenShoes />}></Route>
+        <Route path="/sunglasses" element={<Sunglasses />}></Route>
+        <Route path="/watches" element={<Watches />}></Route>
+        <Route path="/womenjewellery" element={<WomenJewellery />}></Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
