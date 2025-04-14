@@ -1,3 +1,3 @@
 export default function Carrello() {
-  return <p>Craello</p>;
+  return <p>Carello</p>;
 }
