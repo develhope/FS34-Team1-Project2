@@ -11,6 +11,8 @@ import Watches from "./components/Watches";
 import WomenJewellery from "./components/WomenJewellery";
 import Login from "./components/Login";
 import AuthProvider from "./context/authContext";
+import Privacy from "./context/privateContext";
+import Profilo from "./components/Profilo";
 
 function App() {
   return (
@@ -18,6 +20,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
+          <Route
+            path="/profilo"
+            element={
+              <Privacy>
+                <Profilo />
+              </Privacy>
+            }
+          ></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/registrazione" element={<Registrazione />}></Route>
           <Route path="/login" element={<Login />}></Route>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function Registrazione() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -151,12 +152,15 @@ export default function Registrazione() {
           >
             Registrati
           </button>
-          <button
-            type="submit"
-            className="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans"
-          >
-            Login
-          </button>
+          <div className="mt-6 text-center text-sm text-gray-600">
+            Sei già registrato?
+            <Link
+              to="/login"
+              className="text-indigo-600 hover:text-indigo-500 font-medium"
+            >
+              Login
+            </Link>
+          </div>
         </form>
       </div>
     </div>

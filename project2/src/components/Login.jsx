@@ -14,7 +14,7 @@ export default function Login() {
     event.preventDefault();
     login(user);
     if (!error) {
-      navigate("/dashboard");
+      navigate("/profilo");
     }
     console.log(user);
   }
