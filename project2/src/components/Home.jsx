@@ -21,7 +21,7 @@ export default function Home() {
               <Link to="/login" className="py-2 px-6 flex">
                 Accedi
               </Link>
-              <Link to="/login" className="py-2 px-6 flex w-25">
+              <Link to="/carrello" className="py-2 px-6 flex w-25">
                 <img src={cart} />
               </Link>
             </nav>
