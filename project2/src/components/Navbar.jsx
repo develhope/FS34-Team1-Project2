@@ -14,9 +14,25 @@ export default function Navbar() {
         <div className="flex items-center">
           <nav className="font-sen text-gray-800 dark:text-black uppercase text-lg lg:flex items-center hidden">
             <Link to="/">Home</Link>
-            <a href="#" className="py-2 px-6 flex">
-              Prodotti
-            </a>
+            <div className="dropdown">
+              <div tabIndex={0} role="button" className="btn m-1">
+                Click
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+              >
+                <li>
+                  <a>Beauty</a>
+                </li>
+                <li>
+                  <a>Sunglasses</a>
+                </li>
+                <li>
+                  <a>Watches</a>
+                </li>
+              </ul>
+            </div>
             {user ? null : (
               <Link to="/registrazione" className="py-2 px-6 flex">
                 Registrati

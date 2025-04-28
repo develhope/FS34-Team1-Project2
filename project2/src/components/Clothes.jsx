@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import useSWR from "swr";
 import { useState, useEffect } from "react";
-export default function Beauty() {
+export default function MenShoes() {
   const [messaggio, setMessaggio] = useState(null);
   const [prodotti, setProdotti] = useState(() => {
     const prodottiLocal = localStorage.getItem("prodotti");
@@ -11,7 +11,9 @@ export default function Beauty() {
   useEffect(() => {
     localStorage.setItem("prodotti", JSON.stringify(prodotti));
   }, [prodotti]);
-  const { error, data } = useSWR("https://api.escuelajs.co/api/v1/products");
+  const { error, data } = useSWR(
+    " https://api.escuelajs.co/api/v1/products/?categorySlug=clothes"
+  );
   if (!data && !error) return <p>Loading...</p>;
   if (error) return <p>Errore nel caricamento dei dati</p>;
   function handleAggiungiProdotto(prodotto) {
