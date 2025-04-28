@@ -1,6 +1,8 @@
 import { useAuth } from "../context/authContext";
 import Banner from "./banner";
 import Categories from "./Categories";
+import Footer from "./Footer";
+
 import Navbar from "./Navbar";
 
 export default function Home() {
@@ -50,6 +52,7 @@ export default function Home() {
       </main>
       <Banner />
       <Categories />
+      <Footer />
     </>
   );
 }
