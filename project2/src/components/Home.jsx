@@ -1,7 +1,10 @@
 import logo from "../assets/logo-transparent.png";
 import cart from "../assets/cartmarket.svg";
 import { Link } from "react-router-dom";
+import userImage from "../assets/utente.svg";
+import { useAuth } from "../context/authContext";
 export default function Home() {
+  const { user } = useAuth();
   return (
     <main className="bg-white relative overflow-hidden h-screen">
       <header className="h-24 sm:h-32 flex items-center z-30 w-full">
@@ -15,15 +18,29 @@ export default function Home() {
               <a href="#" className="py-2 px-6 flex">
                 Prodotti
               </a>
-              <Link to="/registrazione" className="py-2 px-6 flex">
-                Registrati
-              </Link>
-              <Link to="/login" className="py-2 px-6 flex">
-                Accedi
-              </Link>
-              <Link to="/login" className="py-2 px-6 flex w-25">
-                <img src={cart} />
-              </Link>
+              {user ? null : (
+                <Link to="/registrazione" className="py-2 px-6 flex">
+                  Registrati
+                </Link>
+              )}
+              {user ? (
+                <Link to="/dashboard">
+                  <img src={userImage} className="userimage"></img>
+                </Link>
+              ) : (
+                <Link to="/login" className="py-2 px-6 flex">
+                  Accedi
+                </Link>
+              )}
+              {user ? (
+                <Link to="/carello" className="py-2 px-6 flex w-25">
+                  <img src={cart} />
+                </Link>
+              ) : (
+                <Link to="/login" className="py-2 px-6 flex w-25">
+                  <img src={cart} />
+                </Link>
+              )}
             </nav>
             <button className="lg:hidden flex flex-col ml-4">
               <span className="w-6 h-1 bg-gray-800 mb-1"></span>
