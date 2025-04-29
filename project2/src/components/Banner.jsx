@@ -4,11 +4,12 @@ import classNames from "classnames";
 const displayDetails = [
   {
     image:
-      "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display.png",
-    title: "Sunny Days Ahead",
-    subtitle: "Be inspired",
-    description: "Step out in style with our sunglasses collection",
-    buttonText: "Discover now",
+      "https://www.ceotech.it/wp-content/uploads/2024/10/Samsung-dettaglia-la-patch-di-sicurezza-di-ottobre-2024.jpg",
+    title: "Sempre connessi",
+    subtitle: "Tecnologia senza limiti",
+    description:
+      "Scopri gli ultimi smartphone per restare al passo con i tempi",
+    buttonText: "Scopri ora",
     reverse: false,
     backgroundColor: "bg-yellow-300 hover:bg-yellow-200",
     titleClass: "md:typography-display-2",
@@ -17,21 +18,22 @@ const displayDetails = [
   },
   {
     image:
-      "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display-2.png",
-    title: "Pack it Up",
-    subtitle: "Be active",
-    description: "Explore the great outdoors with our backpacks",
-    buttonText: "Discover now",
+      "https://i.etsystatic.com/20035877/r/il/641457/6740383180/il_fullxfull.6740383180_s28w.jpg",
+    title: "Vivi il gioco",
+    subtitle: "Azione senza confini",
+    description: "Console e accessori per un’esperienza di gioco unica",
+    buttonText: "Scopri ora",
     reverse: true,
     backgroundColor: "bg-gray-300 hover:bg-gray-200",
   },
+
   {
     image:
-      "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display-3.png",
-    title: "Fresh and Bold",
-    subtitle: "New collection",
-    description: "Add a pop up color to your outfit",
-    buttonText: "Discover now",
+      "https://hisense.hgecdn.net/medias/MABAGOR-515Wx515H-mabagor-imagelib-full-trim-0-0-004047bdb702b100e8aa98860e5c38c8-272086-2.jpg?context=bWFzdGVyfG1hYmFnb3Jwcm9kdWN0aW1hZ2VzfDM3MTYwfGltYWdlL2pwZWd8YURobUwyZzVaQzh4TkRrek56STBNamN6TURVeU5pOU5RVUpCUjA5U0xUVXhOVmQ0TlRFMVNGOHZiV0ZpWVdkdmNpOXBiV0ZuWld4cFlpOW1kV3hzTFhSeWFXMHZNQzh3THpBd05EQTBOMkprWWpjd01tSXhNREJsT0dGaE9UZzROakJsTldNek9HTTRYekkzTWpBNE5sOHlMbXB3Wnd8ZGI1ZGRjNTk5NjQxZTUyZDU0OWE4NmY5ODZkMTdlMWUyMzdiMTIxNGZhNmExMDRkZWYxZDQxYTY2MTZmYmExMw",
+    title: "Eleganza e visione",
+    subtitle: "Design e performance",
+    description: "TV di ultima generazione per un intrattenimento sofisticato",
+    buttonText: "Scopri ora",
     reverse: false,
     backgroundColor: "bg-sky-300 hover:bg-sky-200",
   },
@@ -39,7 +41,7 @@ const displayDetails = [
 
 export default function DisplayHorizontalBlock() {
   return (
-    <div className="flex flex-col md:flex-row flex-wrap gap-6 max-w-6xl mx-auto px-4 py-8">
+    <div className="flex flex-col md:flex-row flex-wrap gap-6 max-w-6xl mx-auto px-4 py-8 ">
       {displayDetails.map(
         ({
           image,
