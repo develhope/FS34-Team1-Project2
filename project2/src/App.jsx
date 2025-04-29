@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import AuthProvider from "./context/authContext";
 import Privacy from "./context/privateContext";
 import Profilo from "./components/Profilo";
+import CheckOut from "./components/CheckOut";
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/registrazione" element={<Registrazione />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/carrello" element={<Carrello />}></Route>
+          <Route path="/carrello" element={<Carrello />}>
+          <Route path="checkout" element={<CheckOut />}></Route>
+          </Route>
           <Route path="/audio" element={<Audio />}></Route>
           <Route path="/gaming" element={<Gaming />}></Route>
           <Route path="/mobile" element={<Mobile />}></Route>

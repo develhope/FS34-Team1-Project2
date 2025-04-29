@@ -20,7 +20,7 @@ export default function Audio() {
     setMessaggio(`Aggiunto al carrello: ${prodotto.title}`);
     setTimeout(() => {
       setMessaggio(null);
-    }, 1000);
+    }, 2000);
   }
   console.log(data);
   return (
@@ -38,11 +38,11 @@ export default function Audio() {
                 key={prodotto.id}
                 className="bg-white flex flex-col rounded overflow-hidden shadow-md hover:scale-[1.01] transition-all relative"
               >
-                <a href="javascript:void(0)" className="block">
+                <a href="#" className="block">
                   <div className="w-full">
                     <img
-                      src={prodotto.images}
-                      alt="Product-1"
+                      src={prodotto.image}
+                      alt={prodotto.title}
                       className="w-full aspect-[18/24] object-cover object-top"
                     />
                   </div>
@@ -73,6 +73,13 @@ export default function Audio() {
             ))}
         </div>
       </div>
+
+      {messaggio && <div id="popUp" className="rounded-md border border-gray-300 bg-white p-4">
+        <p className="font-medium text-sky-500">{messaggio}</p>
+      <button onClick={(e) => setMessaggio(null)}
+         className="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
+      >Chiudi</button> 
+        </div>}
     </>
   );
 }

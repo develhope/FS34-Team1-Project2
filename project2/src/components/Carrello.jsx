@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import Navbar from "./Navbar";
 
 export default function Carrello() {
   const [prodotti, setProdotti] = useState([]);
   const { user } = useAuth();
+  const [messaggio, setMessaggio] = useState(null)
 
   useEffect(() => {
     const savedProdotti = JSON.parse(localStorage.getItem("prodotti") || "[]");
@@ -45,6 +46,17 @@ export default function Carrello() {
   const vat = subtotal * 0.22; // IVA al 22%
   const discount = subtotal * 0.1;
   const total = subtotal + vat - discount;
+  const navigate = useNavigate();
+
+  const checkOut = () => {
+    if(user){
+       navigate('checkout');
+    } else{
+      setMessaggio(`Per procedere con l'acquisto devi effettuare il Login!`)
+    }
+   
+  };
+
 
   return (
     <>
@@ -54,7 +66,7 @@ export default function Carrello() {
           <div className="mx-auto max-w-3xl">
             <header className="text-center">
               <h1 className="text-xl font-bold text-black sm:text-3xl">
-                Your Cart
+                Benvenuto nel tuo carrello!
               </h1>
             </header>
 
@@ -162,16 +174,25 @@ export default function Carrello() {
                     </span>
                   </div>
                   <div className="flex justify-end">
-                    <Link
-                      to={"/checkout"}
-                      className="rounded-md bg-sky-300 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-500"
-                    >
-                      Checkout
-                    </Link>
+                  <button onClick={checkOut} className="rounded-md bg-sky-300 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-500">
+                    Checkout
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
+                <Outlet />
+                {messaggio && <div id="popUp" className="rounded-md border border-gray-300 bg-white p-4">
+                <p className="font-medium text-black">{messaggio}</p>
+                <div className="sezBtnAlert">
+                <button onClick={(e)=> navigate('/login')}
+                className="rounded border border-gray-300 px-5 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors bg-sky-300 hover:bg-blue-500"
+                >LOGIN</button> 
+                <button onClick={(e) => setMessaggio(null)}
+                className="rounded  px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
+                >Chiudi</button> 
+                </div>
+        </div>}
           </div>
         </div>
       </section>
