@@ -25,7 +25,7 @@ export default function Home() {
               </p>
               <div className="flex mt-8">
                 <a
-                  href="#"
+                  href="http://localhost:5173/audio"
                   className="uppercase py-2 px-4 rounded-lg bg-yellow-200 border-2 border-transparent text-black text-md mr-4 hover:bg-yellow-400"
                 >
                   Acquista le nuove Beats
