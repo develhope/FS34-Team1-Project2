@@ -4,11 +4,10 @@ import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Registrazione from "./components/Registrazione";
 import Carrello from "./components/Carrello";
-import Beauty from "./components/Beauty";
-import MenShoes from "./components/Clothes";
-import Sunglasses from "./components/Sunglasses";
-import Watches from "./components/Watches";
-import WomenJewellery from "./components/WomenJewellery";
+import Audio from "./components/Audio";
+import Gaming from "./components/Gaming";
+import Mobile from "./components/Mobile";
+import Tv from "./components/Tv";
 import Login from "./components/Login";
 import AuthProvider from "./context/authContext";
 import Privacy from "./context/privateContext";
@@ -32,11 +31,10 @@ function App() {
           <Route path="/registrazione" element={<Registrazione />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/carrello" element={<Carrello />}></Route>
-          <Route path="/beauty" element={<Beauty />}></Route>
-          <Route path="/clothes" element={<MenShoes />}></Route>
-          <Route path="/sunglasses" element={<Sunglasses />}></Route>
-          <Route path="/watches" element={<Watches />}></Route>
-          <Route path="/womenjewellery" element={<WomenJewellery />}></Route>
+          <Route path="/audio" element={<Audio />}></Route>
+          <Route path="/gaming" element={<Gaming />}></Route>
+          <Route path="/mobile" element={<Mobile />}></Route>
+          <Route path="/tv" element={<Tv />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
