@@ -39,11 +39,11 @@ export default function Registrazione() {
     <>
       <Navbar />
 
-      <div className="h-screen bg-indigo-100 flex justify-center items-center">
+      <div className="h-screen bg-white flex justify-center items-center mt-50 mb-50">
         <div className="lg:w-2/5 md:w-1/2 w-2/3">
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-10 rounded-lg shadow-lg min-w-full"
+            className="bg-white p-10 rounded-lg shadow-lg min-w-full "
           >
             <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">
               Registrati
