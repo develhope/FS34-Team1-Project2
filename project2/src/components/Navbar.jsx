@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import userImage from "../assets/utente.svg";
 import { useAuth } from "../context/authContext";
 import logo from "../assets/logo-transparent.png";
+import Select from "./Select";
 export default function Navbar() {
   const { user } = useAuth();
   return (
@@ -22,15 +23,15 @@ export default function Navbar() {
               Home
             </Link>
             <div className="dropdown"></div>
-
+            <Select></Select>
             {!user && (
-              <Link to="/registrazione" className="py-2 px-4">
+              <Link to="/registrazione" className="py-2 px-4 hover:underline">
                 Registrati
               </Link>
             )}
 
             {user ? (
-              <Link to="/profilo" className="py-2 px-4">
+              <Link to="/profilo" className="py-2 px-4 hover:underline">
                 <img
                   src={userImage}
                   alt="Profilo"
@@ -38,12 +39,12 @@ export default function Navbar() {
                 />
               </Link>
             ) : (
-              <Link to="/login" className="py-2 px-4">
+              <Link to="/login" className="py-2 px-4 hover:underline">
                 Accedi
               </Link>
             )}
 
-            <Link to={user ? "/carrello" : "/login"} className="py-2 px-4">
+            <Link to={"/carrello"} className="py-2 px-4 ">
               <img
                 src={cart}
                 alt="Carrello"

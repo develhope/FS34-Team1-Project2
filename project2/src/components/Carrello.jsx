@@ -122,7 +122,7 @@ export default function Carrello() {
                   <dl className="space-y-0.5 text-sm text-gray-700">
                     <div className="flex flex-col justify-between">
                       {prodotti.map((prodotto) => (
-                        <div className="flex flex-row justify-between">
+                        <div key={prodotti.length} className="flex flex-row justify-between">
                           <dt>prod.</dt>
                           <dd>
                             {prodotto.quantity === 1
