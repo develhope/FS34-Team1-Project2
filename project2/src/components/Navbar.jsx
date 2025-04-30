@@ -45,7 +45,7 @@ export default function Navbar() {
             )}
 
             <Link to={"/carrello"} className="py-2 px-5">
-            <HiShoppingCart size={30}/>
+              <HiShoppingCart size={30} />
             </Link>
           </nav>
         </div>
