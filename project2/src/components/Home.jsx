@@ -2,11 +2,11 @@ import { useAuth } from "../context/authContext";
 import Banner from "./banner";
 import Categories from "./Categories";
 import Footer from "./Footer";
-
 import Navbar from "./Navbar";
 
 export default function Home() {
   const { user } = useAuth();
+  
   return (
     <>
       <main className="bg-white relative overflow-hidden ">

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+
 export default function Select() {
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ export default function Select() {
        onChange={handleChange}
       >
         <option value="">PRODOTTI</option>
-        <option value="Audio">AUDIO</option>
+        <option value="Audio"> AUDIO</option>
         <option value="Tv">TV</option>
         <option value="Mobile">MOBILE</option>
         <option value="Gaming">GAMING</option>

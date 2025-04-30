@@ -1,9 +1,9 @@
-import cart from "../assets/cartmarket.svg";
 import { Link } from "react-router-dom";
-import userImage from "../assets/utente.svg";
 import { useAuth } from "../context/authContext";
 import logo from "../assets/logo-transparent.png";
 import Select from "./Select";
+import { HiShoppingCart } from "react-icons/hi2";
+import { CiUser } from "react-icons/ci";
 export default function Navbar() {
   const { user } = useAuth();
   return (
@@ -16,7 +16,7 @@ export default function Navbar() {
             className="h-20 sm:h-38 w-auto  object-contain"
           />
         </div>
-
+        <i class="fa-solid fa-cart-shopping"></i>
         <div className="flex items-center">
           <nav className="font-sen text-gray-800 dark:text-black uppercase text-base sm:text-lg lg:flex items-center hidden gap-4">
             <Link to="/" className="hover:underline">
@@ -32,11 +32,7 @@ export default function Navbar() {
 
             {user ? (
               <Link to="/profilo" className="py-2 px-4 hover:underline">
-                <img
-                  src={userImage}
-                  alt="Profilo"
-                  className="h-8 w-8 rounded-full object-cover"
-                />
+                <CiUser size={30} />
               </Link>
             ) : (
               <Link to="/login" className="py-2 px-4 hover:underline">
@@ -44,12 +40,8 @@ export default function Navbar() {
               </Link>
             )}
 
-            <Link to={"/carrello"} className="py-2 px-4 ">
-              <img
-                src={cart}
-                alt="Carrello"
-                className="h-6 w-6 object-contain"
-              />
+            <Link to={"/carrello"} className="py-2 px-5">
+            <HiShoppingCart size={30}/>
             </Link>
           </nav>
 
