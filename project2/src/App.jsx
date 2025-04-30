@@ -13,6 +13,7 @@ import AuthProvider from "./context/authContext";
 import Privacy from "./context/privateContext";
 import Profilo from "./components/Profilo";
 import CheckOut from "./components/CheckOut";
+import Prodotti from "./components/Prodotti";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/gaming" element={<Gaming />}></Route>
           <Route path="/mobile" element={<Mobile />}></Route>
           <Route path="/tv" element={<Tv />}></Route>
+          <Route path="/prodotti" element={<Prodotti />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

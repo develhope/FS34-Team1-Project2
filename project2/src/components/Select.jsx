@@ -17,7 +17,7 @@ export default function Select() {
        className="block w-full borden-trasparent rounded-lg py-2.5 px-4 text-sm text-black- sm:text-lg transition-all duration-200  focus:outline-none focus:ring-2 hover:focus:ring-sky-500 hover:border-gray-400"
        onChange={handleChange}
       >
-        <option value="">PRODOTTI</option>
+        <option value="Prodotti">PRODOTTI</option>
         <option value="Audio"> AUDIO</option>
         <option value="Tv">TV</option>
         <option value="Mobile">MOBILE</option>

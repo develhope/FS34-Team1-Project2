@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import Banner from "./banner";
 import Categories from "./Categories";
@@ -52,6 +53,7 @@ export default function Home() {
       <Banner />
       <Categories />
       <Footer />
+
     </>
   );
 }

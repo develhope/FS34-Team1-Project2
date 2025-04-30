@@ -4,11 +4,15 @@ import logo from "../assets/logo-transparent.png";
 import Select from "./Select";
 import { HiShoppingCart } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
+import HamMenu from "./HamMenu";
+
 export default function Navbar() {
   const { user } = useAuth();
+  
   return (
-    <header className="h-24 sm:h-28 flex items-center z-30 w-full bg-white shadow ">
-      <div className="w-full max-w-screen-lg mx-auto px-6 flex items-center justify-between">
+    <>
+    <header className="flex h-24 sm:h-28 items-center z-30 w-full bg-white shadow">
+      <div className="flex w-full max-w-screen-lg mx-auto px-6 items-center justify-between">
         <div className="uppercase text-gray-800 dark:text-black font-black text-2xl sm:text-3xl">
           <img
             src={logo}
@@ -16,9 +20,9 @@ export default function Navbar() {
             className="h-20 sm:h-38 w-auto  object-contain"
           />
         </div>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i className="fa-solid fa-cart-shopping"></i>
         <div className="flex items-center">
-          <nav className="font-sen text-gray-800 dark:text-black uppercase text-base sm:text-lg lg:flex items-center hidden gap-4">
+          <nav className="hidden lg:flex font-sen text-gray-800 dark:text-black uppercase text-base sm:text-lg items-center gap-4">
             <Link to="/" className="hover:underline">
               Home
             </Link>
@@ -44,14 +48,10 @@ export default function Navbar() {
             <HiShoppingCart size={30}/>
             </Link>
           </nav>
-
-          <button className="lg:hidden flex flex-col ml-4">
-            <span className="w-6 h-1 bg-gray-800 mb-1"></span>
-            <span className="w-6 h-1 bg-gray-800 mb-1"></span>
-            <span className="w-6 h-1 bg-gray-800 mb-1"></span>
-          </button>
         </div>
       </div>
     </header>
+      {<HamMenu ></HamMenu>}
+    </>
   );
 }
