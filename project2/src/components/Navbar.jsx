@@ -16,7 +16,7 @@ export default function Navbar() {
             className="h-20 sm:h-38 w-auto  object-contain"
           />
         </div>
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i className="fa-solid fa-cart-shopping"></i>
         <div className="flex items-center">
           <nav className="font-sen text-gray-800 dark:text-black uppercase text-base sm:text-lg lg:flex items-center hidden gap-4">
             <Link to="/" className="hover:underline">
@@ -41,7 +41,7 @@ export default function Navbar() {
             )}
 
             <Link to={"/carrello"} className="py-2 px-5">
-            <HiShoppingCart size={30}/>
+              <HiShoppingCart size={30} />
             </Link>
           </nav>
 
