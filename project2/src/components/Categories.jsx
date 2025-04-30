@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Categories() {
   return (
     <div className="py-4 mx-auto max-w-5xl">
@@ -5,8 +7,8 @@ export default function Categories() {
         Top Categories
       </h2>
 
-      <div className="flex flex-wrap justify-between gap-4">
-        <div className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
+      <div className="flex flex-wrap justify-between gap-4"> 
+          <Link to="/Audio "className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
             <img
               src="https://www.spark.co.nz/content/dam/spark/images/product-images/accessories/headphones/apple/airpods-max/Airpods-max-starlight-1.png"
@@ -14,9 +16,10 @@ export default function Categories() {
               className="h-full w-full object-contain"
             />
           </div>
-        </div>
+        </Link>
+      
 
-        <div className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
+        <Link to="/Tv" className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
             <img
               src="https://www.sony.ca/image/04575d5d3e3ace842828cec12600bc7c?fmt=pjpeg&wid=1014&hei=396&bgcolor=F1F5F9&bgc=F1F5F9"
@@ -24,9 +27,9 @@ export default function Categories() {
               className="h-full w-full object-contain"
             />
           </div>
-        </div>
+        </Link>
 
-        <div className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
+        <Link to="/Mobile" className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
             <img
               src="https://img.ricardostatic.ch/images/4443c6a8-ab16-44c8-be65-7edf0bb391c3/t_1000x750/apple-iphone-13-pro-max-512-gb-sierrabl"
@@ -34,9 +37,9 @@ export default function Categories() {
               className="h-full w-full object-contain"
             />
           </div>
-        </div>
+        </Link>
 
-        <div className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
+        <Link to="Gaming" className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
             <img
               src="https://yanapc.it/wp-content/uploads/2025/03/Gaming-God.webp"
@@ -44,7 +47,7 @@ export default function Categories() {
               className="h-full w-full object-contain"
             />
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
