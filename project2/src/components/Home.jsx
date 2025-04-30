@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <main className="bg-white relative overflow-hidden ">
         <Navbar />
-        <div className="bg-white flex relative z-20 items-center overflow-hidden">
+        <div className="bg-white flex relative z-2 items-center overflow-hidden">
           <div className="mx-auto w-full max-w-screen-lg px-6 flex flex-col lg:flex-row relative py-20 pb-10">
             <div className="w-full lg:w-2/5 flex flex-col relative z-20 mb-10 lg:mb-0">
               <span className="w-20 h-2 bg-gray-500 mb-30"></span>
