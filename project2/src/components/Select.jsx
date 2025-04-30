@@ -6,17 +6,15 @@ export default function Select() {
   function handleChange(event) {
     const categoria = event.target.value;
     if (categoria) {
-      navigate(`/${categoria.toLowerCase()}`);
+      navigate(`/${categoria}`);
     }
   }
 
   return (
     <div className="w-full max-w-xs ">
       <select
-       className="block w-full rounded-lg border border-gray-300 bg-white py-2.5 px-4 text-sm text-black- shadow-sm transition-all duration-200  focus:outline-none focus:ring-2 hover:focus:ring-blue-200 hover:border-gray-400"
-        // className="mt-1.5 w-full rounded-lg border-gray-300 text-black sm:text-sm"
-        onChange={handleChange}
-        defaultValue=""
+       className="block w-full borden-trasparent rounded-lg py-2.5 px-4 text-sm text-black- sm:text-lg transition-all duration-200  focus:outline-none focus:ring-2 hover:focus:ring-sky-500 hover:border-gray-400"
+       onChange={handleChange}
       >
         <option value="">PRODOTTI</option>
         <option value="Audio">AUDIO</option>
