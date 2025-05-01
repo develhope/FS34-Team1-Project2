@@ -192,7 +192,7 @@ export default function Carrello() {
                 className="rounded  px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
                 >Chiudi</button> 
                 </div>
-        </div>}
+                </div>}
           </div>
         </div>
       </section>

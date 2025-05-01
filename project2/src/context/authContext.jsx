@@ -26,8 +26,8 @@ export default function AuthProvider({ children }) {
     );
 
     if (!userExist) {
-      setError("credenziali errate");
-      return { esito: false, messaggio: "credenziali errate" };
+      setError("Credenziali errate");
+      return { esito: false, messaggio: "Credenziali errate" };
     }
 
     setUser(userExist);
@@ -51,10 +51,11 @@ export default function AuthProvider({ children }) {
       setError(
         "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
       );
-      return;
+      return { esito: false, messaggio:"La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero." };
     }
     setUsers((prev) => [...prev, userData]);
     setError(null);
+  return { esito: true, messaggio: null }
   }
 
   function logout() {

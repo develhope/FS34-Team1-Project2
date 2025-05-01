@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 export default function Registrazione() {
+  const [messaggioErrore, setMessaggioErrore] = useState(null)
   const navigate = useNavigate();
   const [user, setUser] = useState({
     nome: "",
@@ -23,17 +24,21 @@ export default function Registrazione() {
         name === "eta" || name === "cellulare" ? parseInt(value) || "" : value,
     });
   }
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const validationError = validate(user);
     if (validationError) {
       alert(validationError);
       return;
     }
-    registrazione(user);
-    if (!error) {
-      navigate("/login");
-    }
+     const result = registrazione(user);
+
+  if (!result.esito) {
+    setMessaggioErrore(result.messaggio);
+  } else {
+    navigate("/login");
+  }
+   
   }
   return (
     <>
@@ -168,6 +173,17 @@ export default function Registrazione() {
           </form>
         </div>
       </div>
+      {messaggioErrore && <div id="popUp" className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50">
+        <button onClick={(e) => setMessaggioErrore(null)}
+         className="text-gray-500 hover:text-gray-700 focus:outline-none"
+        ><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg></button> 
+        <p className=" py-5 px-10 font-medium text-black text-lg">{messaggioErrore}</p>
+        <div className="sezBtnAlert">
+        </div>
+        </div>
+        }
     </>
   );
 }
