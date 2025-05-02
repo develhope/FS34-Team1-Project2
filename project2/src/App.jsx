@@ -14,6 +14,7 @@ import Privacy from "./context/privateContext";
 import Profilo from "./components/Profilo";
 import CheckOut from "./components/CheckOut";
 import Prodotti from "./components/Prodotti";
+import Prodotto from "./components/Prodotto";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/mobile" element={<Mobile />}></Route>
           <Route path="/tv" element={<Tv />}></Route>
           <Route path="/prodotti" element={<Prodotti />}></Route>
+          <Route path="/audio/:id" element={<Prodotto />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import useSWR from "swr";
 import { useState, useEffect } from "react";
-import Categories from './Categories'
+
 export default function Prodotti() {
   const [messaggio, setMessaggio] = useState(null);
   const [prodotti, setProdotti] = useState(() => {

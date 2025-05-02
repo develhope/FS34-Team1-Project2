@@ -36,5 +36,31 @@
   #catResp{
    display: none;
   }
-  
 }
+.ezy__epoverview4 {
+  /* Bootstrap variables */
+  --bs-body-color: #23262f;
+  --bs-body-bg: rgb(255, 255, 255);
+
+  /* Easy Frontend variables */
+  --ezy-theme-color: rgb(13, 110, 253);
+  --ezy-theme-color-rgb: 13, 110, 253;
+  --ezy-secondary-color-rgb: 0, 0, 0;
+  --ezy-button-color: #fff;
+  --ezy-rating-color: #ffc107;
+  --ezy-card-bg: #f8f8f8;
+  --ezy-product-color: rgba(var(--ezy-secondary-color-rgb), 0.1);
+
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  overflow: hidden;
+  padding: 60px 0;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .ezy__epoverview4 {
+    padding: 100px 0;
+  }
+}
+
