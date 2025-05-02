@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Categories() {
   return (
-    <div id="catResp" className="py-4 mx-auto max-w-5xl">
+    <div className="py-4 mx-auto max-w-5xl">
       <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-10">
         Top Categories
       </h2>
@@ -39,7 +39,7 @@ export default function Categories() {
           </div>
         </Link>
 
-        <Link to="Gaming" className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
+        <Link to="/Gaming" className="w-full sm:w-[48%] md:w-[23%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all">
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
             <img
               src="https://yanapc.it/wp-content/uploads/2025/03/Gaming-God.webp"

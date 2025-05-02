@@ -9,7 +9,11 @@ import {
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
     
-    export default function HamMenu() {
+export default function HamMenu() {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("PRODOTTI");
+
       const items = [
         {
           label: 'Home',
@@ -28,18 +32,31 @@ import { useNavigate } from 'react-router-dom';
           icon: <SfIconPerson />,
         },
       ];
-      const navigate = useNavigate();
     
       const [selectedItem, setselectedItem] = useState(null);
       function onClickHandler(itemLabel) {
-        if(itemLabel == 'Home'){
+        setselectedItem(itemLabel);
+        if(itemLabel == 'Prodotti'){
+          setOpen(!open)
+        } else if(itemLabel == 'Home'){
             navigate(`/`);
         }else{
             navigate(`/${itemLabel}`);
 
         }
       }
-    
+      const options = [
+        { label: 'Prodotti', value: 'Prodotti' },
+        { label: 'Audio', value: 'Audio' },
+        { label: 'Tv', value: 'Tv' },
+        { label: 'Gaming', value: 'Gaming' },
+        { label: 'Mobile', value: 'Mobile' },
+      ];
+      function handleSelect(option) {
+        setSelected(option.label);
+        setOpen(false);
+        navigate(`/${option.value}`);
+      }
       return (
         <nav className="lg:hidden z-200 bottom-0 w-full left-0 fixed flex flex-row items-stretch bg-white text-primary-700">
           {items.map((item) => (
@@ -56,6 +73,19 @@ import { useNavigate } from 'react-router-dom';
               {item.label}
             </SfButton>
           ))}
+          {open && (
+          <ul className="absolute bottom-full  z-10 w-full bg-white border border-gray-300 rounded-lg shadow-md">
+          {options.map((option) => (
+            <li
+              key={option.value}
+              onClick={() => handleSelect(option)}
+              className="px-6 py-3 hover:bg-sky-100 cursor-pointer text-sm sm:text-base"
+            >
+              {option.label}
+            </li>
+          ))}
+         </ul>
+         )}
         </nav>
       );
     }
