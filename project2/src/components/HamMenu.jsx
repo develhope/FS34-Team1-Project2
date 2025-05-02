@@ -1,15 +1,13 @@
-    import classNames from 'classnames';
-    import {
-      SfButton,
-      SfIconHome,
-      SfIconMenu,
-      SfIconShoppingCart,
-      SfIconFavorite,
-      SfIconPerson,
-    } from '@storefront-ui/react';
-    import { useState } from 'react';
+import classNames from 'classnames';
+import {
+  SfButton,
+  SfIconHome,
+  SfIconMenu,
+  SfIconShoppingCart,
+  SfIconPerson,
+} from '@storefront-ui/react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Select from './Select';
     
     export default function HamMenu() {
       const items = [
