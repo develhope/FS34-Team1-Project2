@@ -11,7 +11,9 @@ export default function Prodotti() {
   useEffect(() => {
     localStorage.setItem("prodotti", JSON.stringify(prodotti));
   }, [prodotti]);
-  const { error, data } = useSWR("https://fakestoreapi.in/api/products");
+  const { error, data } = useSWR(
+    "https://fakestoreapi.in/api/products?limit=150"
+  );
   const products = data;
   if (!data && !error) return <p>Loading...</p>;
   if (error) return <p>Errore nel caricamento dei dati</p>;
@@ -32,52 +34,60 @@ export default function Prodotti() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {data.products.map((prodotto) => (
-              <div
-                key={prodotto.id}
-                className="bg-white flex flex-col rounded overflow-hidden shadow-md hover:scale-[1.01] transition-all relative"
-              >
-                <a href="#" className="block">
-                  <div className="w-full">
-                    <img
-                      src={prodotto.image}
-                      alt={prodotto.title}
-                      className="w-full aspect-[18/24] object-cover object-top"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h5 className="text-sm sm:text-base font-semibold text-slate-900 line-clamp-2">
-                      {prodotto.title}
-                    </h5>
-                    <div className="mt-2 flex items-center flex-wrap gap-2">
-                      <h6 className="text-sm sm:text-base font-semibold text-slate-900">
-                        {prodotto.price} $
-                      </h6>
-                    </div>
-                  </div>
-                </a>
-                <div className="min-h-[50px] p-4 !pt-0">
-                  <button
-                    type="button"
-                    className="absolute left-0 right-0 bottom-3 max-w-[88%] mx-auto text-sm px-2 py-2 font-medium w-full bg-blue-600 hover:bg-blue-700 text-white tracking-wide outline-none border-none rounded"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleAggiungiProdotto(prodotto);
-                    }}
-                  >
-                    Aggiungi al carrello
-                  </button>
+            <div
+              key={prodotto.id}
+              className="bg-white flex flex-col rounded overflow-hidden shadow-md hover:scale-[1.01] transition-all relative"
+            >
+              <a href="#" className="block">
+                <div className="w-full">
+                  <img
+                    src={prodotto.image}
+                    alt={prodotto.title}
+                    className="w-full aspect-[18/24] object-cover object-top"
+                  />
                 </div>
+                <div className="p-4">
+                  <h5 className="text-sm sm:text-base font-semibold text-slate-900 line-clamp-2">
+                    {prodotto.title}
+                  </h5>
+                  <div className="mt-2 flex items-center flex-wrap gap-2">
+                    <h6 className="text-sm sm:text-base font-semibold text-slate-900">
+                      {prodotto.price} $
+                    </h6>
+                  </div>
+                </div>
+              </a>
+              <div className="min-h-[50px] p-4 !pt-0">
+                <button
+                  type="button"
+                  className="absolute left-0 right-0 bottom-3 max-w-[88%] mx-auto text-sm px-2 py-2 font-medium w-full bg-blue-600 hover:bg-blue-700 text-white tracking-wide outline-none border-none rounded"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAggiungiProdotto(prodotto);
+                  }}
+                >
+                  Aggiungi al carrello
+                </button>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
 
-      {messaggio && <div id="popUp" className="rounded-md border border-gray-300 bg-white p-4">
-        <p className="font-medium text-sky-500">{messaggio}</p>
-      <button onClick={(e) => setMessaggio(null)}
-         className="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
-      >Chiudi</button> 
-        </div>}
+      {messaggio && (
+        <div
+          id="popUp"
+          className="rounded-md border border-gray-300 bg-white p-4"
+        >
+          <p className="font-medium text-sky-500">{messaggio}</p>
+          <button
+            onClick={(e) => setMessaggio(null)}
+            className="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
+          >
+            Chiudi
+          </button>
+        </div>
+      )}
     </>
   );
 }
