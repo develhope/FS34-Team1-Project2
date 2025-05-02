@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import useSWR from "swr";
 import { useState, useEffect } from "react";
+import Categories from './Categories'
 export default function Prodotti() {
   const [messaggio, setMessaggio] = useState(null);
   const [prodotti, setProdotti] = useState(() => {
@@ -28,6 +29,7 @@ export default function Prodotti() {
   return (
     <>
       <Navbar />
+      <Categories ></Categories>
       <div className="p-4 mx-auto lg:max-w-6xl md:max-w-4xl">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 sm:mb-8">
           Must have!

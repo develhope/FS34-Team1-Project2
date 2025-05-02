@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Categories() {
   return (
-    <div className="py-4 mx-auto max-w-5xl">
+    <div id="catResp" className="py-4 mx-auto max-w-5xl">
       <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-10">
         Top Categories
       </h2>
