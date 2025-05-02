@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import useSWR from "swr";
 import { useState, useEffect } from "react";
-import Categories from './Categories'
+import Categories from "./Categories";
 export default function Tv() {
   const [messaggio, setMessaggio] = useState(null);
   const [prodotti, setProdotti] = useState(() => {
@@ -12,7 +12,9 @@ export default function Tv() {
   useEffect(() => {
     localStorage.setItem("prodotti", JSON.stringify(prodotti));
   }, [prodotti]);
-  const { error, data } = useSWR("https://fakestoreapi.in/api/products");
+  const { error, data } = useSWR(
+    "https://fakestoreapi.in/api/products?limit=150"
+  );
   const products = data;
   if (!data && !error) return <p>Loading...</p>;
   if (error) return <p>Errore nel caricamento dei dati</p>;
@@ -75,12 +77,20 @@ export default function Tv() {
             ))}
         </div>
       </div>
-      {messaggio && <div id="popUp" className="rounded-md border border-gray-300 bg-white p-4">
-        <p className="font-medium text-sky-500">{messaggio}</p>
-      <button onClick={(e) => setMessaggio(null)}
-         className="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
-      >Chiudi</button> 
-        </div>}
+      {messaggio && (
+        <div
+          id="popUp"
+          className="rounded-md border border-gray-300 bg-white p-4"
+        >
+          <p className="font-medium text-sky-500">{messaggio}</p>
+          <button
+            onClick={(e) => setMessaggio(null)}
+            className="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100"
+          >
+            Chiudi
+          </button>
+        </div>
+      )}
     </>
   );
 }
