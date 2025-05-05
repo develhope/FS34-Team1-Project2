@@ -51,6 +51,8 @@ export default function HamMenu() {
         { label: 'Tv', value: 'Tv' },
         { label: 'Gaming', value: 'Gaming' },
         { label: 'Mobile', value: 'Mobile' },
+        { label: "Elettrodomestici", value: "Elettrodomestici" },
+        { label: "Laptop", value: "Laptop" },
       ];
       function handleSelect(option) {
         setSelected(option.label);

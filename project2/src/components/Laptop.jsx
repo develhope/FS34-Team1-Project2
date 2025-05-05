@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Tv() {
+export default function Laptop() {
   const [idPro, setIdPro] = useState(null)
   const navigate = useNavigate()
   const [messaggio, setMessaggio] = useState(null);
@@ -26,7 +26,7 @@ export default function Tv() {
     setMessaggio(`Aggiunto al carrello: ${prodotto.title}`);
     setTimeout(() => {
       setMessaggio(null);
-    }, 3000);
+    }, 1000);
   }
   function vediProdotto(id){
     const prodottoId = id;
@@ -40,11 +40,11 @@ export default function Tv() {
       <Navbar />
       <div className="p-4 mx-auto lg:max-w-6xl md:max-w-4xl">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 sm:mb-8">
-          Tv
+          Laptop
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {data.products
-            .filter((prodotto) => prodotto.category?.toLowerCase() === "tv")
+            .filter((prodotto) => prodotto.category?.toLowerCase() === "laptop")
             .map((prodotto) => (
               <div
                 key={prodotto.id}
@@ -55,7 +55,7 @@ export default function Tv() {
                     <img
                       src={prodotto.image}
                       alt={prodotto.title}
-                      className="w-full aspect-video object-cover object-top"
+                      className="w-full aspect-[18/24] object-cover object-top"
                     />
                   </div>
                   <div className="p-4">

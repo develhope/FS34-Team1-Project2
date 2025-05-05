@@ -6,8 +6,16 @@ export default function CheckOut() {
     nomeTitolare: "",
     indirizzoFatturazione: "",
     cvc:"",
-    datascadenza:""
+    dataScadenza:""
   });
+ 
+  const [iMieiAcquisti, setImieiAcquisti] = useState(() => {
+    const iMieiAcquistiLocal = localStorage.getItem("iMieiAcquisti");
+    return iMieiAcquistiLocal ? JSON.parse(iMieiAcquistiLocal) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("iMieiAcquisti", JSON.stringify(iMieiAcquisti));
+  }, [iMieiAcquisti]);
 
   const [messaggio, setMessaggio] = useState(null);
   const [errori, setErrori] = useState([]);
@@ -23,7 +31,10 @@ export default function CheckOut() {
       [name]: value,
     }));
   }
-
+  const [prodotti, setProdotti] = useState(() => {
+    const prodottiLocal = localStorage.getItem("prodotti");
+    return prodottiLocal ? JSON.parse(prodottiLocal) : [];
+  });
   function handleSubmit(event) {
     event.preventDefault();
     const { numeroCarta, nomeTitolare, dataScadenza, cvc } = pagamento;
@@ -60,6 +71,7 @@ export default function CheckOut() {
   }
     setErrori([])
     setMessaggio("Ordine effettuato con successo!");
+     setImieiAcquisti((prev)=> [...prev, prodotti])
     setPagamento({
         numeroCarta: "",
         nomeTitolare: "",

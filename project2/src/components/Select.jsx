@@ -7,6 +7,8 @@ const options = [
   { label: "TV", value: "Tv" },
   { label: "MOBILE", value: "Mobile" },
   { label: "GAMING", value: "Gaming" },
+  { label: "ELETTRODOMESTICI", value: "Elettrodomestici" },
+  { label: "LAPTOP", value: "Laptop" },
 ];
 
 export default function CustomSelect() {
