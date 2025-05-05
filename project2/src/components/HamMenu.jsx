@@ -8,6 +8,14 @@ import {
 } from '@storefront-ui/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IoTvOutline } from "react-icons/io5";
+import { IoPhonePortraitOutline } from "react-icons/io5";
+import { SlGameController } from "react-icons/sl";
+import { TbFridge } from "react-icons/tb";
+import { IoIosLaptop } from "react-icons/io";
+import { AiOutlineProduct } from "react-icons/ai";
+import { FaHeadphonesSimple } from "react-icons/fa6";
+
     
 export default function HamMenu() {
   const navigate = useNavigate();
@@ -46,13 +54,13 @@ export default function HamMenu() {
         }
       }
       const options = [
-        { label: 'Prodotti', value: 'Prodotti' },
-        { label: 'Audio', value: 'Audio' },
-        { label: 'Tv', value: 'Tv' },
-        { label: 'Gaming', value: 'Gaming' },
-        { label: 'Mobile', value: 'Mobile' },
-        { label: "Elettrodomestici", value: "Elettrodomestici" },
-        { label: "Laptop", value: "Laptop" },
+        { label: 'Prodotti', value: 'Prodotti', svg: <AiOutlineProduct />  },
+        { label: 'Audio', value: 'Audio', svg: <FaHeadphonesSimple />  },
+        { label: 'Tv', value: 'Tv', svg: <IoTvOutline />  },
+        { label: 'Gaming', value: 'Gaming', svg:  <SlGameController />},
+        { label: 'Mobile', value: 'Mobile', svg: <IoPhonePortraitOutline /> },
+        { label: "Elettrodomestici", value: "Elettrodomestici", svg:<TbFridge /> },
+        { label: "Laptop", value: "Laptop", svg: <IoIosLaptop />  },
       ];
       function handleSelect(option) {
         setSelected(option.label);
@@ -60,7 +68,7 @@ export default function HamMenu() {
         navigate(`/${option.value}`);
       }
       return (
-        <nav className="lg:hidden z-200 bottom-0 w-full left-0 fixed flex flex-row items-stretch bg-white text-primary-700">
+        <nav className="lg:hidden z-200 bottom-0 w-full left-0 fixed flex flex-row items-stretch bg-white text-primary-700 border border-gray-300 rounded-lg shadow-md">
           {items.map((item) => (
             <SfButton
               key={item.label}
@@ -76,13 +84,14 @@ export default function HamMenu() {
             </SfButton>
           ))}
           {open && (
-          <ul className="absolute bottom-full  z-10 w-full bg-white border border-gray-300 rounded-lg shadow-md">
+          <ul className="absolute bottom-full left-40 w-[18rem] z-10 bg-white border border-gray-300 rounded-lg shadow-md">
           {options.map((option) => (
             <li
               key={option.value}
               onClick={() => handleSelect(option)}
               className="px-6 py-3 hover:bg-sky-100 cursor-pointer text-sm sm:text-base"
             >
+              {option.svg}
               {option.label}
             </li>
           ))}

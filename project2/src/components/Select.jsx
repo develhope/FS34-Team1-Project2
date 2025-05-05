@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IoTvOutline } from "react-icons/io5";
+import { IoPhonePortraitOutline } from "react-icons/io5";
+import { SlGameController } from "react-icons/sl";
+import { TbFridge } from "react-icons/tb";
+import { IoIosLaptop } from "react-icons/io";
+import { AiOutlineProduct } from "react-icons/ai";
+import { FaHeadphonesSimple } from "react-icons/fa6";
+
+
+
 
 const options = [
-  { label: "PRODOTTI", value: "Prodotti" },
-  { label: "AUDIO", value: "Audio" },
-  { label: "TV", value: "Tv" },
-  { label: "MOBILE", value: "Mobile" },
-  { label: "GAMING", value: "Gaming" },
-  { label: "ELETTRODOMESTICI", value: "Elettrodomestici" },
-  { label: "LAPTOP", value: "Laptop" },
+  { label: "PRODOTTI", value: "Prodotti", svg: <AiOutlineProduct /> },
+  { label: "AUDIO", value: "Audio", svg: <FaHeadphonesSimple />  },
+  { label: "TV", value: "Tv", svg: <IoTvOutline /> },
+  { label: "MOBILE", value: "Mobile", svg: <IoPhonePortraitOutline />},
+  { label: "GAMING", value: "Gaming", svg: <SlGameController />},
+  { label: "ELETTRODOMESTICI", value: "Elettrodomestici", svg:<TbFridge />},
+  { label: "LAPTOP", value: "Laptop", svg: <IoIosLaptop />  },
 ];
 
 export default function CustomSelect() {
@@ -51,6 +61,7 @@ export default function CustomSelect() {
               onClick={() => handleSelect(option)}
               className="px-6 py-3 hover:bg-sky-100 cursor-pointer text-sm sm:text-base"
             >
+              {option.svg}
               {option.label}
             </li>
           ))}
