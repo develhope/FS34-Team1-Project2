@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Prodotti() {
-  const [idPro, setIdPro] = useState(null)
-  const navigate = useNavigate()
+  const [idPro, setIdPro] = useState(null);
+  const navigate = useNavigate();
   const [messaggio, setMessaggio] = useState(null);
   const [prodotti, setProdotti] = useState(() => {
     const prodottiLocal = localStorage.getItem("prodotti");
@@ -28,19 +28,18 @@ export default function Prodotti() {
       setMessaggio(null);
     }, 2000);
   }
-  function vediProdotto(id){
+  function vediProdotto(id) {
     const prodottoId = id;
-    console.log(prodottoId)
-    setIdPro(prodottoId)
-    navigate(`/audio/${prodottoId}`)
-
+    console.log(prodottoId);
+    setIdPro(prodottoId);
+    navigate(`/audio/${prodottoId}`);
   }
   return (
     <>
       <Navbar />
       <div className="p-4 mx-auto lg:max-w-6xl md:max-w-4xl">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 sm:mb-8">
-          Must have!
+          Il Nostro Catalogo Completo
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {data.products.map((prodotto) => (
@@ -48,7 +47,10 @@ export default function Prodotti() {
               key={prodotto.id}
               className="bg-white flex flex-col rounded overflow-hidden shadow-md hover:scale-[1.01] transition-all relative"
             >
-              <button onClick={() =>vediProdotto(prodotto.id)} className="block">
+              <button
+                onClick={() => vediProdotto(prodotto.id)}
+                className="block"
+              >
                 <div className="w-full">
                   <img
                     src={prodotto.image}

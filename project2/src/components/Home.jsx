@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 
 export default function Home() {
   const { user } = useAuth();
-  
+
   return (
     <>
       <main className="bg-white relative overflow-hidden ">
@@ -32,10 +32,10 @@ export default function Home() {
                   Acquista le nuove Beats
                 </a>
                 <a
-                  href="#"
+                  href="http://localhost:5173/Prodotti"
                   className="uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-sky-500 text-sky-500 hover:bg-sky-500 hover:text-white text-md"
                 >
-                  Novità
+                  Esplora il negozio
                 </a>
               </div>
             </div>
@@ -53,7 +53,6 @@ export default function Home() {
       <Banner />
       <Categories />
       <Footer />
-
     </>
   );
 }
