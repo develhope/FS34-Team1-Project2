@@ -37,16 +37,19 @@ function App() {
           <Route path="/registrazione" element={<Registrazione />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/carrello" element={<Carrello />}>
-          <Route path="checkout" element={<CheckOut />}></Route>
+            <Route path="checkout" element={<CheckOut />}></Route>
           </Route>
           <Route path="/audio" element={<Audio />}></Route>
-          <Route path="/elettrodomestici" element={<ElettroDomestici />}></Route>
+          <Route
+            path="/elettrodomestici"
+            element={<ElettroDomestici />}
+          ></Route>
           <Route path="/laptop" element={<Laptop />}></Route>
           <Route path="/gaming" element={<Gaming />}></Route>
           <Route path="/mobile" element={<Mobile />}></Route>
           <Route path="/tv" element={<Tv />}></Route>
           <Route path="/prodotti" element={<Prodotti />}></Route>
-          <Route path="/audio/:id" element={<Prodotto />} />
+          <Route path="/prodotti/:id" element={<Prodotto />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

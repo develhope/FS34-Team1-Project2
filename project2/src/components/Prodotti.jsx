@@ -32,7 +32,7 @@ export default function Prodotti() {
     const prodottoId = id;
     console.log(prodottoId);
     setIdPro(prodottoId);
-    navigate(`/audio/${prodottoId}`);
+    navigate(`/prodotti/${prodottoId}`);
   }
   return (
     <>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import Navbar from "./Navbar";
+import MyOrders from "./MyOrders";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -55,11 +56,12 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
               <dt className="font-medium text-gray-900 text-xl">Età</dt>
 
-              <dd className="text-gray-700 sm:col-span-2 text-xl">
+              <dd className="text-gray-700 sm:col-span-2 text-xl ">
                 {user.eta}
               </dd>
             </div>
           </dl>
+          <MyOrders></MyOrders>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
             <button
               className="rounded-md bg-sky-300 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-500 mt-6 ml-160"
