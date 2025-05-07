@@ -16,9 +16,13 @@ export default function Login() {
     event.preventDefault();
     const result = await login(user);
     if (result?.esito) {
+      console.log(result);
       navigate("/profilo");
     } else {
-      setMessaggioErrore(error);
+      console.log(`errore: ${result.messaggio}`);
+      if (result.esito == false) {
+        setMessaggioErrore(result.messaggio);
+      }
     }
   }
   return (
