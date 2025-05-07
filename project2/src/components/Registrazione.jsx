@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 export default function Registrazione() {
   const { registrazione, error, validate, users } = useAuth();
-  const ids = users.filter((user) => user.id)
+  const ids = users.filter((user) => user.id);
   const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
-  console.log('idmax' + idMax)  
-  const [messaggioErrore, setMessaggioErrore] = useState(null)
+  console.log("idmax" + idMax);
+  const [messaggioErrore, setMessaggioErrore] = useState(null);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     id: idMax + 1,
@@ -35,14 +35,13 @@ export default function Registrazione() {
       alert(validationError);
       return;
     }
-     const result = await registrazione(user);
+    const result = await registrazione(user);
 
-  if (!result.esito) {
-    setMessaggioErrore(result.messaggio);
-  } else {
-    navigate("/login");
-  }
-   
+    if (!result.esito) {
+      setMessaggioErrore(result.messaggio);
+    } else {
+      navigate("/login");
+    }
   }
   return (
     <>
@@ -161,7 +160,7 @@ export default function Registrazione() {
             </div>
             <button
               type="submit"
-              className="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
+              className="w-full mt-6 bg-sky-500 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
             >
               Registrati
             </button>
@@ -177,15 +176,24 @@ export default function Registrazione() {
           </form>
         </div>
       </div>
-      {messaggioErrore && <div id="popUp" className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <button onClick={(e) => setMessaggioErrore(null)}
-         className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-        > ✖</button> 
-        <p className=" py-5 px-10 font-medium text-black text-lg">{messaggioErrore}</p>
-        <div className="sezBtnAlert">
+      {messaggioErrore && (
+        <div
+          id="popUp"
+          className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50"
+        >
+          <button
+            onClick={(e) => setMessaggioErrore(null)}
+            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          >
+            {" "}
+            ✖
+          </button>
+          <p className=" py-5 px-10 font-medium text-black text-lg">
+            {messaggioErrore}
+          </p>
+          <div className="sezBtnAlert"></div>
         </div>
-        </div>
-        }
+      )}
     </>
   );
 }
