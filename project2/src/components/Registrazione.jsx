@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 export default function Registrazione() {
+  const { registrazione, error, validate, users } = useAuth();
+  const ids = users.filter((user) => user.id)
+  const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
+  console.log('idmax' + idMax)  
   const [messaggioErrore, setMessaggioErrore] = useState(null)
   const navigate = useNavigate();
   const [user, setUser] = useState({
+    id: idMax + 1,
     nome: "",
     cognome: "",
     email: "",
@@ -15,7 +20,6 @@ export default function Registrazione() {
     cellulare: "",
   });
 
-  const { registrazione, error, validate } = useAuth();
   function handleChange(event) {
     const { name, value } = event.target;
     setUser({
@@ -31,7 +35,7 @@ export default function Registrazione() {
       alert(validationError);
       return;
     }
-     const result = registrazione(user);
+     const result = await registrazione(user);
 
   if (!result.esito) {
     setMessaggioErrore(result.messaggio);
@@ -175,10 +179,8 @@ export default function Registrazione() {
       </div>
       {messaggioErrore && <div id="popUp" className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50">
         <button onClick={(e) => setMessaggioErrore(null)}
-         className="text-gray-500 hover:text-gray-700 focus:outline-none"
-        ><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg></button> 
+         className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+        > ✖</button> 
         <p className=" py-5 px-10 font-medium text-black text-lg">{messaggioErrore}</p>
         <div className="sezBtnAlert">
         </div>
