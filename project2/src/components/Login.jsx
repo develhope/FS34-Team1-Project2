@@ -12,13 +12,17 @@ export default function Login() {
     setUser({ ...user, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    login(user);
-    if (!error) {
+    const result = await login(user);
+    if (result?.esito) {
+      console.log(result);
       navigate("/profilo");
     } else {
-      setMessaggioErrore(error);
+      console.log(`errore: ${result.messaggio}`);
+      if (result.esito == false) {
+        setMessaggioErrore(result.messaggio);
+      }
     }
   }
   return (
@@ -57,8 +61,8 @@ export default function Login() {
               />
             </div>
 
-            <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors">
-              Sign In
+            <button className="w-full bg-sky-500 text-white font-medium py-2.5 rounded-lg transition-colors">
+              Accedi
             </button>
           </form>
 
@@ -79,22 +83,9 @@ export default function Login() {
           >
             <button
               onClick={(e) => setMessaggioErrore(null)}
-              className="text-gray-500 hover:text-gray-700 focus:outline-none"
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              ✖
             </button>
             <p className=" py-5 px-10 font-medium text-black text-lg">
               {messaggioErrore}
