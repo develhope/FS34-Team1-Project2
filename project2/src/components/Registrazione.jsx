@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 export default function Registrazione() {
   const { registrazione, error, validate, users } = useAuth();
-<<<<<<< HEAD
-=======
+
   const ids = users.filter((user) => user.id);
-  const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
+
   console.log("idmax" + idMax);
->>>>>>> 34796beebada6e981c0be96328aa5ad7bce9ea17
+
   const [messaggioErrore, setMessaggioErrore] = useState(null);
   const navigate = useNavigate();
 
@@ -43,11 +42,8 @@ export default function Registrazione() {
       alert(validationError);
       return;
     }
-<<<<<<< HEAD
-    const result = registrazione(user);
-=======
+
     const result = await registrazione(user);
->>>>>>> 34796beebada6e981c0be96328aa5ad7bce9ea17
 
     if (!result.esito) {
       setMessaggioErrore(result.messaggio);
@@ -195,7 +191,6 @@ export default function Registrazione() {
         >
           <button
             onClick={(e) => setMessaggioErrore(null)}
-<<<<<<< HEAD
             className="text-gray-500 hover:text-gray-700 focus:outline-none"
           >
             <svg
@@ -212,12 +207,6 @@ export default function Registrazione() {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-=======
-            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-          >
-            {" "}
-            ✖
->>>>>>> 34796beebada6e981c0be96328aa5ad7bce9ea17
           </button>
           <p className=" py-5 px-10 font-medium text-black text-lg">
             {messaggioErrore}
