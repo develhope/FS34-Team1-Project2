@@ -3,20 +3,13 @@ import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+
 export default function Registrazione() {
   const { registrazione, error, validate, users } = useAuth();
-
-  const ids = users.filter((user) => user.id);
-
-  console.log("idmax" + idMax);
-
-  const [messaggioErrore, setMessaggioErrore] = useState(null);
+  const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
+  const [messaggioErrore, setMessaggioErrore] = useState(null)
   const navigate = useNavigate();
 
-  const ultimoUser = user[users.lenght - 1];
-  const idMax = ultimoUser.id;
-
-  console.log(idMax);
   const [user, setUser] = useState({
     id: idMax + 1,
     nome: "",
@@ -37,7 +30,7 @@ export default function Registrazione() {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-    const validationError = validate(user);
+    const validationError = await validate(user);
     if (validationError) {
       alert(validationError);
       return;

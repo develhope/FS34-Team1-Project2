@@ -13,7 +13,7 @@ export default function Navbar() {
     <>
     <header className="flex h-24 sm:h-28 items-center z-30 w-full bg-white shadow">
       <div className="flex w-full max-w-screen-lg mx-auto px-6 items-center justify-between">
-        <div className="uppercase text-gray-800 dark:text-black font-black text-2xl sm:text-3xl">
+           <div className="uppercase text-gray-800 dark:text-black font-black text-2xl sm:text-3xl">
           <img
             src={logo}
             alt="Logo"
@@ -35,7 +35,7 @@ export default function Navbar() {
             )}
 
             {user ? (
-              <Link to="/profilo" className="py-2 px-4 hover:underline">
+              <Link to="/dashboard" className="py-2 px-4 hover:underline">
                 <CiUser size={30} />
               </Link>
             ) : (
