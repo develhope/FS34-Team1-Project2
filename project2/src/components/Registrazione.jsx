@@ -8,6 +8,11 @@ export default function Registrazione() {
   const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
   const [messaggioErrore, setMessaggioErrore] = useState(null)
   const navigate = useNavigate();
+
+  const ultimoUser = user[users.lenght - 1];
+  const idMax = ultimoUser.id;
+
+  console.log(idMax);
   const [user, setUser] = useState({
     id: idMax + 1,
     nome: "",
@@ -33,14 +38,14 @@ export default function Registrazione() {
       alert(validationError);
       return;
     }
-     const result = await registrazione(user);
 
-  if (!result.esito) {
-    setMessaggioErrore(result.messaggio);
-  } else {
-    navigate("/login");
-  }
-   
+    const result = await registrazione(user);
+
+    if (!result.esito) {
+      setMessaggioErrore(result.messaggio);
+    } else {
+      navigate("/login");
+    }
   }
   return (
     <>
@@ -159,7 +164,7 @@ export default function Registrazione() {
             </div>
             <button
               type="submit"
-              className="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
+              className="w-full mt-6 bg-sky-500 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
             >
               Registrati
             </button>
@@ -175,15 +180,36 @@ export default function Registrazione() {
           </form>
         </div>
       </div>
-      {messaggioErrore && <div id="popUp" className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <button onClick={(e) => setMessaggioErrore(null)}
-         className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-        > ✖</button> 
-        <p className=" py-5 px-10 font-medium text-black text-lg">{messaggioErrore}</p>
-        <div className="sezBtnAlert">
+      {messaggioErrore && (
+        <div
+          id="popUp"
+          className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50"
+        >
+          <button
+            onClick={(e) => setMessaggioErrore(null)}
+            className="text-gray-500 hover:text-gray-700 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+          <p className=" py-5 px-10 font-medium text-black text-lg">
+            {messaggioErrore}
+          </p>
+          <div className="sezBtnAlert"></div>
         </div>
-        </div>
-        }
+      )}
     </>
   );
 }

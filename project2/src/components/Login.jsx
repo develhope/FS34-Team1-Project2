@@ -16,9 +16,13 @@ export default function Login() {
     event.preventDefault();
     const result = await login(user);
     if (result?.esito) {
+      console.log(result);
       navigate("/profilo");
     } else {
-      setMessaggioErrore(error);
+      console.log(`errore: ${result.messaggio}`);
+      if (result.esito == false) {
+        setMessaggioErrore(result.messaggio);
+      }
     }
   }
   return (
@@ -57,8 +61,8 @@ export default function Login() {
               />
             </div>
 
-            <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors">
-              Sign In
+            <button className="w-full bg-sky-500 text-white font-medium py-2.5 rounded-lg transition-colors">
+              Accedi
             </button>
           </form>
 
@@ -81,7 +85,7 @@ export default function Login() {
               onClick={(e) => setMessaggioErrore(null)}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
             >
-            ✖
+              ✖
             </button>
             <p className=" py-5 px-10 font-medium text-black text-lg">
               {messaggioErrore}

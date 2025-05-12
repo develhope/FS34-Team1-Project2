@@ -20,19 +20,22 @@ export default function AuthProvider({ children }) {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
-  function login({ email, password }) {
+  async function login({ email, password }) {
     const userExist = users.find(
       (user) => user.email === email && user.password === password
     );
+    console.log(userExist);
 
     if (!userExist) {
-      setError("Credenziali errate");
+      console.log("userexist not found");
+      // setError("Credenziali errate");
       return { esito: false, messaggio: "Credenziali errate" };
     }
 
     setUser(userExist);
     setError(null);
     localStorage.setItem("user", JSON.stringify(userExist));
+    return { esito: true, messaggio: "Credenziali ok" };
   }
 
   function validate(password) {
@@ -51,11 +54,15 @@ export default function AuthProvider({ children }) {
       setError(
         "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
       );
-      return { esito: false, messaggio:"La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero." };
+      return {
+        esito: false,
+        messaggio:
+          "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero.",
+      };
     }
     setUsers((prev) => [...prev, userData]);
     setError(null);
-  return { esito: true, messaggio: null }
+    return { esito: true, messaggio: null };
   }
 
   function logout() {
