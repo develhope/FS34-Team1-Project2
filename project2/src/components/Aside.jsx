@@ -55,7 +55,7 @@ export default function Aside(){
                         ></path>
                       </svg>
                       <span className="ml-3 flex-1 whitespace-nowrap">
-                        Users
+                        User
                       </span>
                     </Link>
                   </li>
