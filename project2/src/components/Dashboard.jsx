@@ -185,16 +185,10 @@ export default function Dashboard() {
           <main>
             <div className="pt-6 px-4">
               <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-1">
+                  <PieChart></PieChart>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex-shrink-0">
-                      <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                        $45,385
-                      </span>
-                      <PieChart></PieChart>
-                    </div>
-
-                    <BarChart></BarChart>
+                    <div className="flex-shrink-0"></div>
                   </div>
                   <div id="main-chart"></div>
                 </div>
@@ -217,130 +211,11 @@ export default function Dashboard() {
                       </a>
                     </div>
                   </div>
-                  <div className="flex flex-col mt-8">
+                  <div className="flex flex-col mt-8 min-w-xs">
                     <div className="overflow-x-auto rounded-lg">
                       <div className="align-middle inline-block min-w-full">
                         <div className="shadow overflow-hidden sm:rounded-lg">
-                          <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
-                              <tr>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Transaction
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Date & Time
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Amount
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody className="bg-white">
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Bonnie Green
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment refund to{" "}
-                                  <span className="font-semibold">#00910</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  -$670
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment failed from{" "}
-                                  <span className="font-semibold">#087651</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 18 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $234
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Byrd
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $5000
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Jese Leos
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    THEMESBERG LLC
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 11 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $560
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Lysle
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 6 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $1437
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <BarChart></BarChart>
                         </div>
                       </div>
                     </div>
