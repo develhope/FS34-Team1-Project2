@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import Navbar from "./Navbar";
-import MyOrders from "./MyOrders";
-import { Link } from "react-router-dom";
 import Aside from "./Aside";
 
 export default function Dashboard() {

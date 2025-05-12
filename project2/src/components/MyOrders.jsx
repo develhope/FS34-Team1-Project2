@@ -24,7 +24,7 @@ export default function MyOrders() {
 
           <ul className="space-y-6">
             {iMieiAcquisti?.map((acquisto) => (
-              <li key={acquisto.id} className="space-y-3">
+              <li key={acquisto.id} className="space-y-3 max max-w-2xl">
                 <h4 className="font-semibold text-lg">Ordine {acquisto.id}</h4>
 
                 <ul className="space-y-3">

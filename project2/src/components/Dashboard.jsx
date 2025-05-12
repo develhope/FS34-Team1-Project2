@@ -4,10 +4,12 @@ import Navbar from "./Navbar";
 import PieChart from "./PieChart";
 
 export default function Dashboard() {
+ 
+
   return (
     <div>
       <Navbar />
-      <div className="flex overflow-hidden bg-white pt-16">
+      <div className="flex overflow-hidden bg-white pt-1">
         <Aside></Aside>
         <div
           className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
