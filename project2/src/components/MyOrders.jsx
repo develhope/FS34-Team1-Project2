@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Aside from "./Aside";
 
 export default function MyOrders() {
   const [iMieiAcquisti, setImieiAcquisti] = useState(() => {
@@ -9,6 +10,9 @@ export default function MyOrders() {
     localStorage.setItem("iMieiAcquisti", JSON.stringify(iMieiAcquisti));
   }, [iMieiAcquisti]);
   return (
+    <>
+     <div className="flex">
+    <Aside></Aside>
     <ul className="py-3 sm:py-4 mt-20">
       <h3 className="font-bold text-lg mb-10">I miei Acquisti</h3>
       {iMieiAcquisti &&
@@ -50,5 +54,7 @@ export default function MyOrders() {
           </li>
         ))}
     </ul>
+    </div>
+     </>
   );
 }

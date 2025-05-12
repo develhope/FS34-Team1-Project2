@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import Navbar from "./Navbar";
 import MyOrders from "./MyOrders";
+import { Link } from "react-router-dom";
+import Aside from "./Aside";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -13,8 +15,11 @@ export default function Dashboard() {
   return (
     <>
       <Navbar />
-      <div className="container">
-        <div className="flow-root w-full max-w-200 bg-white p-8 rounded-2xl shadow-xl space-y-5 my-8">
+      <div className="flex">
+
+        <Aside></Aside>
+          <main className="flex-1 ml-0 lg:ml-64 p-8">
+        <div className="flow-root w-full max-w-200 bg-white p-8 rounded-2xl shadow-xl space-y-5 my-8 ">
           <div className="px-4 py-5 sm:px-6">
             <h3 className=" leading-6 font-medium text-black text-4xl">
               Il tuo profilo
@@ -61,7 +66,6 @@ export default function Dashboard() {
               </dd>
             </div>
           </dl>
-          <MyOrders></MyOrders>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
             <button
               className="rounded-md bg-sky-300 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-500 mt-6 ml-160"
@@ -71,6 +75,7 @@ export default function Dashboard() {
             </button>
           </p>
         </div>
+        </main>
       </div>
     </>
   );
