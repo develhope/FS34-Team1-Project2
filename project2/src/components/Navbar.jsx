@@ -35,7 +35,7 @@ export default function Navbar() {
             )}
 
             {user ? (
-              <Link to="/profilo" className="py-2 px-4 hover:underline">
+              <Link to="/dashboard" className="py-2 px-4 hover:underline">
                 <CiUser size={30} />
               </Link>
             ) : (

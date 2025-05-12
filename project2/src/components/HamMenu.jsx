@@ -48,6 +48,8 @@ export default function HamMenu() {
           setOpen(!open)
         } else if(itemLabel == 'Home'){
             navigate(`/`);
+        } else if(itemLabel == 'Profilo'){
+            navigate(`/dashboard`);
         }else{
             navigate(`/${itemLabel}`);
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
 export default function Dashboard() {
@@ -58,7 +59,7 @@ export default function Dashboard() {
                     </a>
                   </li>
                   <li>
-                    <a
+                    <Link to='/profilo'
                       href="#"
                       target="_blank"
                       className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
@@ -78,7 +79,7 @@ export default function Dashboard() {
                       <span className="ml-3 flex-1 whitespace-nowrap">
                         Users
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a

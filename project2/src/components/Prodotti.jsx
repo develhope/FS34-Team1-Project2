@@ -18,7 +18,6 @@ export default function Prodotti() {
   const { error, data } = useSWR(
     "https://fakestoreapi.in/api/products?limit=150"
   );
-  const products = data;
   if (!data && !error) return <p>Loading...</p>;
   if (error) return <p>Errore nel caricamento dei dati</p>;
   function handleAggiungiProdotto(prodotto) {
