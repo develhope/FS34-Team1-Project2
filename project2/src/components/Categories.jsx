@@ -12,7 +12,7 @@ export default function Categories() {
           to="/Audio "
           className="w-full md:w-[30%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
         >
-          <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl dark:text-white">
+          <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl ">
             Audio
           </h1>
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
@@ -29,7 +29,7 @@ export default function Categories() {
           className="w-full md:w-[30%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
         >
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
-            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl dark:text-white">
+            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl">
               TV
             </h1>
             <img
@@ -45,7 +45,7 @@ export default function Categories() {
           className="w-full md:w-[30%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
         >
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
-            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl dark:text-white">
+            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl">
               Mobile
             </h1>
             <img
@@ -61,7 +61,7 @@ export default function Categories() {
           className="w-full md:w-[30%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
         >
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
-            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl dark:text-white">
+            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl">
               Gaming
             </h1>
             <img
@@ -77,7 +77,7 @@ export default function Categories() {
           className="w-full md:w-[30%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
         >
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
-            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl dark:text-white">
+            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl">
               Casa
             </h1>
             <img
@@ -93,7 +93,7 @@ export default function Categories() {
           className=" w-full md:w-[30%] bg-gray-100 p-3 rounded-lg group overflow-hidden cursor-pointer relative z-50 hover:before:bg-black before:absolute before:inset-0 before:opacity-20 before:transition-all"
         >
           <div className="w-full aspect-[41/50] overflow-hidden mx-auto">
-            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl dark:text-white">
+            <h1 className="flex justify-center mb-4  text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl  lg:text-3xl">
               Laptop
             </h1>
             <img

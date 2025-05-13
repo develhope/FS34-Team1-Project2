@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import useSWR from "swr";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function Gaming() {
   const [idPro, setIdPro] = useState(null);
@@ -101,6 +102,7 @@ export default function Gaming() {
           </button>
         </div>
       )}
+      <Footer />
     </>
   );
 }

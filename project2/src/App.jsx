@@ -15,7 +15,7 @@ import Profilo from "./components/Profilo";
 import CheckOut from "./components/CheckOut";
 import Prodotti from "./components/Prodotti";
 import Prodotto from "./components/Prodotto";
-import ElettroDomestici from "./components/Elettrodomestici";
+import ElettroDomestici from "./components/ElettroDomestici";
 import Laptop from "./components/Laptop";
 import MyOrders from "./components/MyOrders";
 
@@ -33,8 +33,22 @@ function App() {
               </Privacy>
             }
           ></Route>
-          <Route path="/myorders" element={<MyOrders />}></Route>
-          <Route path="/dashboard" element={<Privacy><Dashboard /></Privacy>}></Route>
+          <Route
+            path="/myorders"
+            element={
+              <Privacy>
+                <MyOrders />
+              </Privacy>
+            }
+          ></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <Privacy>
+                <Dashboard />
+              </Privacy>
+            }
+          ></Route>
           <Route path="/registrazione" element={<Registrazione />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/carrello" element={<Carrello />}>

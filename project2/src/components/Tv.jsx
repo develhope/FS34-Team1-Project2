@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import useSWR from "swr";
+import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -101,6 +102,7 @@ export default function Tv() {
           </button>
         </div>
       )}
+      <Footer />
     </>
   );
 }
