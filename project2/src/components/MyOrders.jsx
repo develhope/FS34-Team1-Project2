@@ -16,9 +16,9 @@ export default function MyOrders() {
     <>
       <Navbar />
 
-      <div className="flex">
+      <div className="flex-1 ml-0 lg:ml-64 p-8">
         <Aside />
-        <main className="flex-1 ml-0 lg:ml-64 p-8 mt-20">
+        <main className="flex-1 ml-0 lg:ml-64 p-8 mt-20 sm: ">
           <h3 className="font-bold text-lg mb-10">I miei Acquisti</h3>
 
           <ul className="space-y-6">
@@ -30,7 +30,7 @@ export default function MyOrders() {
                   {(acquisto || []).map((prodotto) => (
                     <li
                       key={prodotto.id}
-                      className="flex items-center space-x-4 p-4 border rounded-lg shadow-sm bg-white"
+                      className="flex items-center space-x-4 p-4 border rounded-lg shadow-sm bg-white "
                     >
                       <img
                         className="h-12 w-12 rounded-full object-cover"

@@ -39,7 +39,6 @@ export default function Aside(){
                   <li>
                     <Link to='/profilo'
                       href="#"
-                      target="_blank"
                       className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                     >
                       <svg
