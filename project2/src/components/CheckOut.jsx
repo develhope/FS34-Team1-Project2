@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckOut() {
+  const navigate = useNavigate()
+  const { user } = useAuth()
+  const userId = user.id;
   const [pagamento, setPagamento] = useState({
     numeroCarta: "",
     nomeTitolare: "",
@@ -8,7 +13,7 @@ export default function CheckOut() {
     cvc:"",
     dataScadenza:""
   });
- 
+  
   const [iMieiAcquisti, setImieiAcquisti] = useState(() => {
     const iMieiAcquistiLocal = localStorage.getItem("iMieiAcquisti");
     return iMieiAcquistiLocal ? JSON.parse(iMieiAcquistiLocal) : [];
@@ -71,7 +76,7 @@ export default function CheckOut() {
   }
     setErrori([])
     setMessaggio("Ordine effettuato con successo!");
-     setImieiAcquisti((prev)=> [...prev, prodotti])
+    setImieiAcquisti((prev)=> [...prev, {  userId, ...prodotti }])
     setPagamento({
         numeroCarta: "",
         nomeTitolare: "",
@@ -81,6 +86,8 @@ export default function CheckOut() {
       });
     
       localStorage.removeItem("prodotti");
+      
+      navigate("/ordinesuccesso")
     
   }
 

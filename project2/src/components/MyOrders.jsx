@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import Aside from "./Aside";
 import Navbar from "./Navbar";
+import { useAuth } from "../context/authContext";
 
 export default function MyOrders() {
   const [iMieiAcquisti, setImieiAcquisti] = useState(() => {
     const iMieiAcquistiLocal = localStorage.getItem("iMieiAcquisti");
     return iMieiAcquistiLocal ? JSON.parse(iMieiAcquistiLocal) : [];
   });
-
+  const { user } = useAuth()
+   const ordiniUtente = iMieiAcquisti.filter(
+    (ordine) => ordine.userId === user.id)
+  
   useEffect(() => {
     localStorage.setItem("iMieiAcquisti", JSON.stringify(iMieiAcquisti));
   }, [iMieiAcquisti]);
@@ -22,12 +26,12 @@ export default function MyOrders() {
           <h3 className="font-bold text-lg mb-10">I miei Acquisti</h3>
 
           <ul className="space-y-6">
-            {iMieiAcquisti?.map((acquisto) => (
+            {ordiniUtente?.map((acquisto) => (
               <li key={acquisto.id} className="space-y-3 max max-w-2xl">
                 <h4 className="font-semibold text-lg">Ordine {acquisto.id}</h4>
-
+                 
                 <ul className="space-y-3">
-                  {(acquisto || []).map((prodotto) => (
+                  {Object.entries(acquisto).filter(([key]) => key !== "userId").map(([key, prodotto]) => (
                     <li
                       key={prodotto.id}
                       className="flex items-center space-x-4 p-4 border rounded-lg shadow-sm bg-white "
@@ -54,7 +58,7 @@ export default function MyOrders() {
                         {prodotto.price} €
                       </div>
                     </li>
-                  ))}
+                  ))} 
                 </ul>
               </li>
             ))}
