@@ -16,7 +16,7 @@ export default function MyOrders() {
     <>
       <Navbar />
 
-      <div className="flex-1 ml-0 lg:ml-64 p-8">
+      <div className="flex-1 ml-0 lg: p-8">
         <Aside />
         <main className="flex-1 ml-0 lg:ml-64 p-8 mt-20 sm: ">
           <h3 className="font-bold text-lg mb-10">I miei Acquisti</h3>
