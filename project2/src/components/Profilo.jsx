@@ -1,16 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import Navbar from "./Navbar";
 import Aside from "./Aside";
-import Footer from "./Footer";
+
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-  function Handlelogout() {
-    logout();
-    navigate("/");
-  }
+  const { user } = useAuth();
+
+ 
   return (
     <>
       <Navbar />
@@ -65,22 +61,17 @@ export default function Dashboard() {
               </div>
             </dl>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              <button
-                className="rounded-md bg-sky-300 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-500 mt-6 ml-160"
-                onClick={Handlelogout}
-              >
-                Logout
-              </button>
+            
             </p>
           </div>
         </main>
       </div>
-      <div className="flex overflow-hidden bg-white pt-1 fixed bottom-0 w-full mt-30">
+      <div className="flex overflow-hidden bg-white pt-1 bottom-0 w-full mt-30">
         <div
           id="main-content"
           className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
         >
-          <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
+          <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4 buttom-0">
             <ul className="flex items-center flex-wrap mb-6 md:mb-0">
               <li>
                 <a

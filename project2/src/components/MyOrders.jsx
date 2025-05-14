@@ -61,7 +61,7 @@ export default function MyOrders() {
           </ul>
         </main>
       </div>
-      <div className="flex overflow-hidden bg-white pt-1 fixed bottom-0 w-full mt-30">
+      <div className="flex overflow-hidden bg-white pt-1 bottom-0 w-full mt-30">
         <div
           id="main-content"
           className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
