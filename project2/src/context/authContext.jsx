@@ -20,22 +20,32 @@ export default function AuthProvider({ children }) {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
-  async function login({ email, password }) {
-    const userExist = users.find(
-      (user) => user.email === email && user.password === password
-    );
-    console.log(userExist);
+  async function login(data) {
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    if (!userExist) {
-      console.log("userexist not found");
-      // setError("Credenziali errate");
-      return { esito: false, messaggio: "Credenziali errate" };
+      const result = await response.json();
+
+      if (response.ok) {
+        setMessage(result.message);
+        setUser(result.user);
+        console.log("if");
+        console.log(result.user);
+      } else {
+        setMessage(result.message);
+        setUser(null);
+        console.log("else");
+      }
+    } catch (error) {
+      console.log("catch");
+      console.error(error);
+      setMessage("errore");
+      setUser(null);
     }
-
-    setUser(userExist);
-    setError(null);
-    localStorage.setItem("user", JSON.stringify(userExist));
-    return { esito: true, messaggio: "Credenziali ok" };
   }
 
   function validate(password) {
