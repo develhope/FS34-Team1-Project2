@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 app.post("/registrazione", (req, res) => {
   const { nome, cognome, email, eta, password } = req.body;
   utenti.push({ nome, cognome, email, eta, cellulare, password });
-  res.status(201).json({ message: "Utente registrato con successo" });
+  res.status(200).json({ message: "Utente registrato con successo" });
 });
 
 app.post("/login", (req, res) => {
