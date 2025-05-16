@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   if (utenti) {
     res.json(utenti);
   } else if (utenti.length) {
-    res.status(404).send("errore utenti non trovati");
+    res.status(404).send("errore utente non trovato");
   } else {
     res.status(404).send("errore la pagina non è stata trovata");
   }
@@ -27,7 +27,7 @@ app.post("/registrazione", (req, res) => {
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
-  res.status(200).json({ message: "Login ricevuto", email, password });
+  res.status(200).json({ message: "Login effettuato", email, password });
 });
 
 app.listen(PORT, () => {
