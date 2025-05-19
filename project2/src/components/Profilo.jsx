@@ -10,7 +10,7 @@ import { useState } from "react";
 
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const { user, logout, setUser} = useAuth();
   const [apriMod, setApriMod] = useState(false);
   const [mod, setMod] = useState({})
   const [error, setError] = useState(null);
@@ -38,6 +38,7 @@ async function handleSubmit(event){
  localStorage.setItem("user", JSON.stringify(mod));
  setTimeout(() => {
    setApriMod(false);
+   Navigazione(0)
  }, 5000);
  } catch (error) {
    console.error("error")
@@ -47,16 +48,17 @@ async function handleSubmit(event){
  async function handleDelet(event){
   event.preventDefault()
   try {
+    console.log("Utente al momento della cancellazione:", user);
     const response = await fetch(`http://localhost:3000/utente/${user.id}`,
            { method: "DELETE",
             headers: { "Content-type": "application/json" },})
     const result = await response.json()
-    setMessage("Account eliminato con successo")
-     setTimeout(() => {
-      Navigazione("/")
-    }, 4000);
-    
-   localStorage.removeItem("user");
+    localStorage.removeItem("user");
+    setUser(null);
+    logout()
+    setTimeout(() => {
+     Navigazione("/accounteliminato")
+   }, 500);
    
   } catch (error) {
     console.error("error")
@@ -119,16 +121,15 @@ async function handleSubmit(event){
             
             </p>
       <button onClick={() => setApriMod(!apriMod)} > <FaUserEdit /></button>
-    <button
-     onClick={ () => setDelet(true) }> <MdDelete /> <p>Elimina account</p></button>
-          {apriMod && (  <div className="h-screen bg-white flex justify-center items-center mt-50 mb-50">
+      <button onClick={ () => setDelet(true) }> <MdDelete /> <p>Elimina account</p></button>
+  {apriMod && (  <div className="h-screen bg-white flex justify-center items-center mt-50 mb-50">
         <div className="lg:w-2/5 md:w-1/2 w-2/3">
           <form
             onSubmit={handleSubmit}
             className="bg-white p-10 rounded-lg shadow-lg min-w-full "
           >
             <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">
-              Registrati
+              Modifica il tuo profilo
             </h1>
             <div>
               <label
@@ -218,7 +219,7 @@ async function handleSubmit(event){
             </div>
             <button
               type="submit"
-              className="w-full mt-6 bg-sky-500 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
+              className="w-full mt-6 bg-sky-500 hover:bg-sky-300 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
             >
               Modifica
             </button>
