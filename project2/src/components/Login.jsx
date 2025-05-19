@@ -14,17 +14,22 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const result = await login(user);
-    if (result?.esito) {
-      console.log(result);
-      navigate("/profilo");
-    } else {
-      console.log(`errore: ${result.messaggio}`);
-      if (result.esito == false) {
+    try {
+      const result = await login(user);
+      if (result?.esito) {
+        
+        navigate("/profilo");
+       } 
+       else {
         setMessaggioErrore(result.messaggio);
       }
-    }
+      }catch (error) {
+      console.log(`errore: ${result.messaggio}`);
+     
+    }  
   }
+      
+    
   return (
     <>
       <Navbar />

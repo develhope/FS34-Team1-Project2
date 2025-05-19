@@ -21,21 +21,29 @@ export default function AuthProvider({ children }) {
   }, [users]);
 
   async function login({ email, password }) {
-    const userExist = users.find(
-      (user) => user.email === email && user.password === password
-    );
-    console.log(userExist);
+     try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!userExist) {
-      console.log("userexist not found");
-      // setError("Credenziali errate");
+      const result = await response.json();
+      if (response.ok) {
+        setUser(result.user);
+        setError(null);
+        console.log(user);
+        localStorage.setItem("user", JSON.stringify(result.user));
+        return { esito: true, messaggio: "Credenziali ok" };
+      }else{
+      console.log("user not found");
+      setUser(null);
       return { esito: false, messaggio: "Credenziali errate" };
+      }
+    }catch (error) {
+      console.error("Errore durante la richiesta:", error);
     }
 
-    setUser(userExist);
-    setError(null);
-    localStorage.setItem("user", JSON.stringify(userExist));
-    return { esito: true, messaggio: "Credenziali ok" };
   }
 
   function validate(password) {
@@ -43,26 +51,36 @@ export default function AuthProvider({ children }) {
     return pattern.test(password);
   }
 
-  function registrazione(userData) {
-    const userExist = users.find((user) => user.email === userData.email);
-
-    if (userExist) {
+async  function registrazione(userData) {
+  if (!validate(userData.password)) {
+  setError(
+    "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
+  )};
+ try {
+      const response = await fetch("http://localhost:3000/registrazione", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(userData),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setUsers((prev) => [...prev, userData]);
+        setError(null);
+        return { esito: true, messaggio: null };
+      }  
+      if (!response.ok) {
       setError("email già registrata");
       return { esito: false, messaggio: "Email già registrata" };
-    }
-    if (!validate(userData.password)) {
-      setError(
-        "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
-      );
+      }
       return {
         esito: false,
         messaggio:
           "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero.",
-      };
+      }
+    } catch {
+      setError("Errore durante la registrazione");
+       return { esito: false, messaggio: "Errore durante il login" };
     }
-    setUsers((prev) => [...prev, userData]);
-    setError(null);
-    return { esito: true, messaggio: null };
   }
 
   function logout() {

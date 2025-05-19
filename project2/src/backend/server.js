@@ -20,14 +20,45 @@ app.get("/", (req, res) => {
 });
 
 app.post("/registrazione", (req, res) => {
-  const { nome, cognome, email, eta, cellulare, password } = req.body;
-  utenti.push({ nome, cognome, email, eta, cellulare, password });
-  res.status(200).json({ message: "Utente registrato con successo" });
+  const { nome, cognome, email, eta, password, cellulare } = req.body;
+  const userExist = utenti.find(
+    (user) => user.email.toLowerCase() === email.toLowerCase()
+  );
+  if (userExist) {
+    return res.status(404).json({ message: "utente già registrato" });
+  } else {
+    const newUser = {
+      id: id,
+      nome: nome,
+      cognome: cognome,
+      email: email,
+      eta: eta,
+      password: password,
+      cellulare: cellulare,
+    };
+    utenti.push(newUser);
+    return res.status(201).json({ message: "utente registrato con successo" });
+  }
 });
 
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
-  res.status(200).json({ message: "Login effettuato", email, password });
+  if (email && password) {
+    const userExist = utenti.find(
+      (utente) =>
+        utente.email.toLowerCase() === email.toLowerCase() &&
+        utente.password === password
+    );
+    if (userExist) {
+      return res
+        .status(200)
+        .json({ message: "login effettuato con successo", user: userExist });
+    } else {
+      return res.status(400).json({ message: "credenziali errate" });
+    }
+  } else {
+    return res.status(404).json({ message: "inserisci email e password" });
+  }
 });
 
 app.listen(PORT, () => {
