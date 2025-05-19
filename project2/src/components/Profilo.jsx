@@ -6,62 +6,64 @@ import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
-
-
 export default function Dashboard() {
   const { user } = useAuth();
   const [apriMod, setApriMod] = useState(false);
-  const [mod, setMod] = useState({})
+  const [mod, setMod] = useState({});
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
   const [delet, setDelet] = useState(false);
   const Navigazione = useNavigate();
 
-  function handleChange(event){
-  setMod((prev) => ({
-    ...prev,
-    [event.target.name]: event.target.value,
-  }));
-}
+  function handleChange(event) {
+    setMod((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  }
 
-async function handleSubmit(event){
- event.preventDefault()
+  async function handleSubmit(event) {
+    event.preventDefault();
 
- try {
-   const response = await fetch(`http://localhost:3000/registrazione/${user.id}`,
-          { method: "PUT",
-           headers: { "Content-type": "application/json" },
-           body: JSON.stringify(mod),})
-   const result = await response.json()
- setMessage("modifica effettuata con successo")
- localStorage.setItem("user", JSON.stringify(mod));
- setTimeout(() => {
-   setApriMod(false);
- }, 5000);
- } catch (error) {
-   console.error("error")
-   setError("Modifica non riuscita")
- }
-}
- async function handleDelet(event){
-  event.preventDefault()
-  try {
-    const response = await fetch(`http://localhost:3000/utente/${user.id}`,
-           { method: "DELETE",
-            headers: { "Content-type": "application/json" },})
-    const result = await response.json()
-    setMessage("Account eliminato con successo")
-     setTimeout(() => {
-      Navigazione("/")
-    }, 4000);
-    
-   localStorage.removeItem("user");
-   
-  } catch (error) {
-    console.error("error")
-    setError("Eliminazione non riuscita")
-  }}
+    try {
+      const response = await fetch(
+        `http://localhost:3000/registrazione/${user.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(mod),
+        }
+      );
+      const result = await response.json();
+      setMessage("modifica effettuata con successo");
+      localStorage.setItem("user", JSON.stringify(mod));
+      setTimeout(() => {
+        setApriMod(false);
+      }, 5000);
+    } catch (error) {
+      console.error("error");
+      setError("Modifica non riuscita");
+    }
+  }
+  async function handleDelet(event) {
+    event.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:3000/utente/${user.id}`, {
+        method: "DELETE",
+        headers: { "Content-type": "application/json" },
+      });
+      const result = await response.json();
+      setMessage("Account eliminato con successo");
+      setTimeout(() => {
+        Navigazione("/");
+      }, 4000);
+
+      localStorage.removeItem("user");
+    } catch (error) {
+      console.error("error");
+      setError("Eliminazione non riuscita");
+    }
+  }
   return (
     <>
       <Navbar />
@@ -115,172 +117,187 @@ async function handleSubmit(event){
                 </dd>
               </div>
             </dl>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-            
-            </p>
-      <button onClick={() => setApriMod(!apriMod)} > <FaUserEdit /></button>
-    <button
-     onClick={ () => setDelet(true) }> <MdDelete /> <p>Elimina account</p></button>
-          {apriMod && (  <div className="h-screen bg-white flex justify-center items-center mt-50 mb-50">
-        <div className="lg:w-2/5 md:w-1/2 w-2/3">
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-10 rounded-lg shadow-lg min-w-full "
-          >
-            <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">
-              Registrati
-            </h1>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="nome"
-              >
-                Nome
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="text"
-                name="nome"
-                id="nome"
-                placeholder="nome"
-                onChange={handleChange}
-                
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="cognome"
-              >
-                Cognome
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="text"
-                name="cognome"
-                id="cognome"
-                placeholder="cognome"
-                onChange={handleChange}
-                
-              />
-            </div>
-          
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="cellulare"
-              >
-                Cellulare
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="tel"
-                name="cellulare"
-                id="cellulare"
-                placeholder="inserisci il tuo numero di telefono"
-                onChange={handleChange}
-                
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="eta"
-              >
-                Età
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="number"
-                name="eta"
-                id="eta"
-                placeholder="inserisci la tua età"
-                onChange={handleChange}
-               
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-                onChange={handleChange}
-                
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full mt-6 bg-sky-500 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
-            >
-              Modifica
+            <p className="mt-1 max-w-2xl text-sm text-gray-500"></p>
+            <button onClick={() => setApriMod(!apriMod)}>
+              <p className="p-5 flex items-center gap-2 ">
+                {" "}
+                <FaUserEdit /> Modifica account
+              </p>
             </button>
-          </form>
-        </div>
-      </div>)}
+            <button onClick={() => setDelet(true)}>
+              <p className="p-5 flex items-center gap-2">
+                <MdDelete />
+                Elimina account
+              </p>
+            </button>
+            {apriMod && (
+              <div
+                className="fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-100 backdrop-blur-sm transition-opacity duration-300"
+                onClick={() => setApriMod(false)} // clic fuori chiude il modale
+              >
+                <div
+                  className="relative mx-auto w-full max-w-[24rem] rounded-lg overflow-hidden shadow-sm bg-white"
+                  onClick={(e) => e.stopPropagation()} // evita chiusura cliccando dentro
+                >
+                  <div className="relative flex flex-col">
+                    <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-slate-800">
+                      <h3 className="text-2xl">Modifica Profilo</h3>
+                    </div>
+                    <div className="flex flex-col gap-4 p-6">
+                      {/* Email (solo visualizzazione) */}
+                      <div className="w-full">
+                        <label className="block mb-2 text-sm text-slate-600">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          disabled
+                          defaultValue={user.email}
+                          className="w-full bg-gray-100 placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
+                        />
+                      </div>
 
-  { message && ( 
-    <div id="popUp" className="border-1 black" >
-    <div >   
-      <div className="flex shrink-0 items-center pb-4 text-xl font-medium text-slate-800">
-        {message}
-      </div>
-     
-      <div className="flex shrink-0 flex-wrap items-center pt-4 justify-end">
-        <button
-        onClick={() => {
-              setMessage(false);
-            }}
-          className=" rounded-md border border-gray py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
-          Chiudi
-        </button>
-       
-      </div>
-    </div>
-  
-  </div>)}
-   { delet && ( 
-    <div id="popUp" className="border-1 black" >
-    <div >   
-      <div className="flex shrink-0 items-center pb-4 text-xl font-medium text-slate-800">
-        Sei sicuro di voler eliminare l'account?
-      </div>
-     
-      <div className="flex shrink-0 flex-wrap items-center pt-4 justify-end">
-        <button
-        onClick={() => {
-              setDelet(false);
-            }}
-          className=" rounded-md border border-gray py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
-          Annulla
-        </button>
-        <button  onClick={ (event )=> handleDelet(event)}
-         className="rounded-md bg-red-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" type="button">
-          Elimina Account
-        </button>
-      </div>
-    </div>
-  
-  </div>)}
+                      {/* Nome */}
+                      <div className="w-full">
+                        <label className="block mb-2 text-sm text-slate-600">
+                          Nome
+                        </label>
+                        <input
+                          name="nome"
+                          type="text"
+                          placeholder={user.nome}
+                          onChange={handleChange}
+                          className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
+                        />
+                      </div>
+
+                      {/* Cognome */}
+                      <div className="w-full">
+                        <label className="block mb-2 text-sm text-slate-600">
+                          Cognome
+                        </label>
+                        <input
+                          name="cognome"
+                          type="text"
+                          placeholder={user.cognome}
+                          onChange={handleChange}
+                          className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
+                        />
+                      </div>
+
+                      {/* Cellulare */}
+                      <div className="w-full">
+                        <label className="block mb-2 text-sm text-slate-600">
+                          Cellulare
+                        </label>
+                        <input
+                          name="cellulare"
+                          type="tel"
+                          placeholder={user.cellulare}
+                          onChange={handleChange}
+                          className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
+                        />
+                      </div>
+
+                      {/* Età */}
+                      <div className="w-full">
+                        <label className="block mb-2 text-sm text-slate-600">
+                          Età
+                        </label>
+                        <input
+                          name="eta"
+                          type="number"
+                          placeholder={user.eta}
+                          onChange={handleChange}
+                          className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
+                        />
+                      </div>
+
+                      {/* Password */}
+                      <div className="w-full">
+                        <label className="block mb-2 text-sm text-slate-600">
+                          Password
+                        </label>
+                        <input
+                          name="password"
+                          type="password"
+                          placeholder="Nuova password"
+                          onChange={handleChange}
+                          className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-6 pt-0">
+                      <button
+                        type="button"
+                        onClick={handleSubmit}
+                        className="w-full rounded-md bg-slate-800 py-2 px-4 text-center text-sm text-white transition-all shadow-md hover:shadow-lg"
+                      >
+                        Salva Modifiche
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {message && (
+              <div id="popUp" className="border-1 black">
+                <div>
+                  <div className="flex shrink-0 items-center pb-4 text-xl font-medium text-slate-800">
+                    {message}
+                  </div>
+
+                  <div className="flex shrink-0 flex-wrap items-center pt-4 justify-end">
+                    <button
+                      onClick={() => {
+                        setMessage(false);
+                      }}
+                      className=" rounded-md border border-gray py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                      type="button"
+                    >
+                      Chiudi
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {delet && (
+              <div id="popUp" className="border-1 black">
+                <div>
+                  <div className="flex shrink-0 items-center pb-4 text-xl font-medium text-slate-800">
+                    Sei sicuro di voler eliminare l'account?
+                  </div>
+
+                  <div className="flex shrink-0 flex-wrap items-center pt-4 justify-end">
+                    <button
+                      onClick={() => {
+                        setDelet(false);
+                      }}
+                      className=" rounded-md border border-gray py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                      type="button"
+                    >
+                      Annulla
+                    </button>
+                    <button
+                      onClick={(event) => handleDelet(event)}
+                      className=" rounded-md bg-red-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
+                      type="button"
+                    >
+                      Elimina Account
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-
-      
         </main>
-
       </div>
 
-
-
-
-
-      <div id="FOOTER" className="flex overflow-hidden bg-white pt-1 bottom-0 w-full mt-30">
+      <div
+        id="FOOTER"
+        className="flex overflow-hidden bg-white pt-1 bottom-0 w-full mt-30"
+      >
         <div
           id="main-content"
           className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
@@ -408,7 +425,6 @@ async function handleSubmit(event){
       </div>
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
-
-      
-  </> 
-)}
+    </>
+  );
+}
