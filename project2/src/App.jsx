@@ -19,6 +19,7 @@ import ElettroDomestici from "./components/ElettroDomestici";
 import Laptop from "./components/Laptop";
 import MyOrders from "./components/MyOrders";
 import OrdineSuccesso from "./components/OrdineSuccesso";
+import AccountEliminato from "./components/AccountEliminato";
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
           <Route path="/mobile" element={<Mobile />}></Route>
           <Route path="/tv" element={<Tv />}></Route>
           <Route path="/ordinesuccesso" element={<OrdineSuccesso />}></Route>
+          <Route path="/accounteliminato" element={<AccountEliminato />}></Route>
           <Route path="/prodotti" element={<Prodotti />}></Route>
           <Route path="/prodotti/:id" element={<Prodotto />} />
         </Routes>

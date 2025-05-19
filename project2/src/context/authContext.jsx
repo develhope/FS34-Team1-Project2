@@ -53,10 +53,16 @@ export default function AuthProvider({ children }) {
 
 async  function registrazione(userData) {
   if (!validate(userData.password)) {
-  setError(
-    "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
-  )};
- try {
+    setError(
+      "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
+    )
+    return {
+      esito: false,
+      messaggio:
+      "La password deve contenere almeno 8 caratteri, una lettera maiuscola, un carattere speciale ed almeno un numero.",
+    };};
+    try {
+   
       const response = await fetch("http://localhost:3000/registrazione", {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -68,14 +74,9 @@ async  function registrazione(userData) {
         setError(null);
         return { esito: true, messaggio: null };
       }  
-      if (!response.ok) {
+      else {
       setError("email già registrata");
       return { esito: false, messaggio: "Email già registrata" };
-      }
-      return {
-        esito: false,
-        messaggio:
-          "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero.",
       }
     } catch {
       setError("Errore durante la registrazione");
@@ -90,7 +91,7 @@ async  function registrazione(userData) {
 
   return (
     <AuthContext.Provider
-      value={{ user, users, login, registrazione, logout, error, validate }}
+      value={{ user, users, login, registrazione, logout, error, validate , setUser}}
     >
       {children}
     </AuthContext.Provider>

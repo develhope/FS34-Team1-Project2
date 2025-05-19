@@ -144,7 +144,6 @@ export default function Dashboard() {
                       <h3 className="text-2xl">Modifica Profilo</h3>
                     </div>
                     <div className="flex flex-col gap-4 p-6">
-                      {/* Email (solo visualizzazione) */}
                       <div className="w-full">
                         <label className="block mb-2 text-sm text-slate-600">
                           Email
@@ -157,7 +156,6 @@ export default function Dashboard() {
                         />
                       </div>
 
-                      {/* Nome */}
                       <div className="w-full">
                         <label className="block mb-2 text-sm text-slate-600">
                           Nome
@@ -171,7 +169,6 @@ export default function Dashboard() {
                         />
                       </div>
 
-                      {/* Cognome */}
                       <div className="w-full">
                         <label className="block mb-2 text-sm text-slate-600">
                           Cognome
@@ -185,7 +182,6 @@ export default function Dashboard() {
                         />
                       </div>
 
-                      {/* Cellulare */}
                       <div className="w-full">
                         <label className="block mb-2 text-sm text-slate-600">
                           Cellulare
@@ -199,7 +195,6 @@ export default function Dashboard() {
                         />
                       </div>
 
-                      {/* Età */}
                       <div className="w-full">
                         <label className="block mb-2 text-sm text-slate-600">
                           Età
@@ -213,7 +208,6 @@ export default function Dashboard() {
                         />
                       </div>
 
-                      {/* Password */}
                       <div className="w-full">
                         <label className="block mb-2 text-sm text-slate-600">
                           Password

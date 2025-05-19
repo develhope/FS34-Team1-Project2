@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
 export default function Registrazione() {
-  const { registrazione, error, validate, users } = useAuth();
-  // const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
+  const { registrazione, error, validate } = useAuth();
   const [messaggioErrore, setMessaggioErrore] = useState(null)
   const navigate = useNavigate();
 
@@ -32,7 +31,7 @@ export default function Registrazione() {
     event.preventDefault();
     const validationError = await validate(user);
     if (validationError) {
-      alert(validationError);
+      setMessaggioErrore(error);
       return;
     }
 
