@@ -6,12 +6,12 @@ import Navbar from "./Navbar";
 
 export default function Registrazione() {
   const { registrazione, error, validate, users } = useAuth();
-  const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
+  // const idMax = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
   const [messaggioErrore, setMessaggioErrore] = useState(null)
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    id: idMax + 1,
+    id: Date.now(),
     nome: "",
     cognome: "",
     email: "",

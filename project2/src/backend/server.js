@@ -28,7 +28,7 @@ app.post("/registrazione", (req, res) => {
     return res.status(404).json({ message: "utente già registrato" });
   } else {
     const newUser = {
-      id: id,
+      id: Date.now(),
       nome: nome,
       cognome: cognome,
       email: email,
@@ -60,6 +60,47 @@ app.post("/login", (req, res) => {
     return res.status(404).json({ message: "inserisci email e password" });
   }
 });
+
+app.get("/registrazione/:id", (req, res) => {
+  const { id } = req.params;
+  const users = utenti.find((user) => user.id == id);
+  if (users) {
+    res.json(utenti);
+  } else {
+    res.status(404).send("id non trovato");
+  }
+});
+
+app.put("/registrazione/:id", (req, res) =>{
+  const {id} = req.params
+  const { nome, cognome, eta, password, cellulare } = req.body;
+  const userExist = utenti.find(
+    (user) => user.id == id 
+  );
+  if(userExist){
+    userExist.nome = nome;
+    userExist.cognome = cognome;
+    userExist.eta = eta;
+    userExist.password = password;
+    userExist.cellulare = cellulare;
+    return res
+          .status(200)
+          .json({ message: "Modifica effettuata con successo", user: userExist });
+  } else {
+    return res.status(404).json({ message: "Id non trovato" });
+  }      
+})
+
+app.delete("/utente/:id", (req, res) => {
+  const { id } = req.params;
+  const userIndex = utenti.findIndex((user) => user.id == id);
+  if (userIndex !== -1) {
+    utenti.splice(userIndex, 1);
+    return res.status(200).json({ message: "Utente eliminato con successo" });
+  } else {
+    return res.status(404).json({ message: "Id non trovato" });
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server avviato su http://localhost:${PORT}`);
