@@ -138,11 +138,11 @@ export default function Dashboard() {
             </button>
             {apriMod && (
               <div
-                className="fixed inset-0 z-[999] grid min-h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-100 backdrop-blur-sm transition-opacity duration-300 overflow-y-auto"
+                className="fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm transition-opacity duration-300"
                 onClick={() => setApriMod(false)} // clic fuori chiude il modale
               >
                 <div
-                  className="relative mx-auto w-full max-w-[24rem] rounded-lg overflow-hidden shadow-sm bg-white max-h-[90vh] overflow-y-auto"
+                  className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-lg bg-white shadow-lg"
                   onClick={(e) => e.stopPropagation()} // evita chiusura cliccando dentro
                 >
                   <div className="relative flex flex-col">
