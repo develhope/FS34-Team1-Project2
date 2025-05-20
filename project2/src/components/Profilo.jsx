@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Dashboard() {
-   const { user, logout, setUser} = useAuth();
+  const { user, logout, setUser } = useAuth();
   const [apriMod, setApriMod] = useState(false);
   const [mod, setMod] = useState({});
   const [error, setError] = useState(null);
@@ -38,7 +38,7 @@ export default function Dashboard() {
       setMessage("modifica effettuata con successo");
       localStorage.setItem("user", JSON.stringify(result.user));
       setUser(result.user);
-      Navigazione(0)
+      Navigazione(0);
       setTimeout(() => {
         setApriMod(false);
       }, 5000);
@@ -57,13 +57,12 @@ export default function Dashboard() {
       const result = await response.json();
 
       setMessage("Account eliminato con successo");
-       localStorage.removeItem("user");
-       setUser(null);
-       logout()
-       setTimeout(() => {
-       Navigazione("/accounteliminato")
-       }, 500);
-      
+      localStorage.removeItem("user");
+      setUser(null);
+      logout();
+      setTimeout(() => {
+        Navigazione("/accounteliminato");
+      }, 500);
 
       localStorage.removeItem("user");
     } catch (error) {
@@ -139,11 +138,11 @@ export default function Dashboard() {
             </button>
             {apriMod && (
               <div
-                className="fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-100 backdrop-blur-sm transition-opacity duration-300"
+                className="fixed inset-0 z-[999] grid min-h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-100 backdrop-blur-sm transition-opacity duration-300 overflow-y-auto"
                 onClick={() => setApriMod(false)} // clic fuori chiude il modale
               >
                 <div
-                  className="relative mx-auto w-full max-w-[24rem] rounded-lg overflow-hidden shadow-sm bg-white"
+                  className="relative mx-auto w-full max-w-[24rem] rounded-lg overflow-hidden shadow-sm bg-white max-h-[90vh] overflow-y-auto"
                   onClick={(e) => e.stopPropagation()} // evita chiusura cliccando dentro
                 >
                   <div className="relative flex flex-col">
