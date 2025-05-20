@@ -78,11 +78,16 @@ app.put("/registrazione/:id", (req, res) =>{
     (user) => user.id == id 
   );
   if(userExist){
-    userExist.nome = nome;
-    userExist.cognome = cognome;
-    userExist.eta = eta;
-    userExist.password = password;
-    userExist.cellulare = cellulare;
+    // userExist.nome = nome;
+    // userExist.cognome = cognome;
+    // userExist.eta = eta;
+    // userExist.password = password;
+    // userExist.cellulare = cellulare;
+    if (nome !== undefined) userExist.nome = nome;
+    if (cognome !== undefined) userExist.cognome = cognome;
+    if (eta !== undefined) userExist.eta = eta;
+    if (cellulare !== undefined) userExist.cellulare = cellulare;
+    if (password !== undefined) userExist.password = password;
     return res
           .status(200)
           .json({ message: "Modifica effettuata con successo", user: userExist });

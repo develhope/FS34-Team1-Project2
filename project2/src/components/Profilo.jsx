@@ -36,7 +36,8 @@ export default function Dashboard() {
       );
       const result = await response.json();
       setMessage("modifica effettuata con successo");
-      localStorage.setItem("user", JSON.stringify(mod));
+      localStorage.setItem("user", JSON.stringify(result.user));
+      setUser(result.user);
       Navigazione(0)
       setTimeout(() => {
         setApriMod(false);
