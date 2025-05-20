@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Dashboard() {
-  const { user } = useAuth();
+   const { user, logout, setUser} = useAuth();
   const [apriMod, setApriMod] = useState(false);
   const [mod, setMod] = useState({});
   const [error, setError] = useState(null);
@@ -37,6 +37,7 @@ export default function Dashboard() {
       const result = await response.json();
       setMessage("modifica effettuata con successo");
       localStorage.setItem("user", JSON.stringify(mod));
+      Navigazione(0)
       setTimeout(() => {
         setApriMod(false);
       }, 5000);
@@ -53,10 +54,15 @@ export default function Dashboard() {
         headers: { "Content-type": "application/json" },
       });
       const result = await response.json();
+
       setMessage("Account eliminato con successo");
-      setTimeout(() => {
-        Navigazione("/");
-      }, 4000);
+       localStorage.removeItem("user");
+       setUser(null);
+       logout()
+       setTimeout(() => {
+       Navigazione("/accounteliminato")
+       }, 500);
+      
 
       localStorage.removeItem("user");
     } catch (error) {
