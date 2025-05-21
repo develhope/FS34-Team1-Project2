@@ -45,137 +45,128 @@ export default function Registrazione() {
   }
   return (
     <>
-      <Navbar />
+     <Navbar />
+    <div className="min-h-screen bg-white flex justify-center items-center px-4">
+    <div className="w-full max-w-5xl">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-10 rounded-lg shadow-lg grid grid-cols-1 gap-6 lg:grid-cols-2"
+    >
+      <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans col-span-1 lg:col-span-2">
+        Registrati
+      </h1>
 
-      <div className="h-screen bg-white flex justify-center items-center mt-50 mb-50">
-        <div className="lg:w-2/5 md:w-1/2 w-2/3">
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-10 rounded-lg shadow-lg min-w-full "
-          >
-            <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">
-              Registrati
-            </h1>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="nome"
-              >
-                Nome
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="text"
-                name="nome"
-                id="nome"
-                placeholder="nome"
-                onChange={handleChange}
-                value={user.nome}
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="cognome"
-              >
-                Cognome
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="text"
-                name="cognome"
-                id="cognome"
-                placeholder="cognome"
-                onChange={handleChange}
-                value={user.cognome}
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="email"
-              >
-                Email
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="email"
-                name="email"
-                id="email"
-                placeholder="@email"
-                onChange={handleChange}
-                value={user.email}
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="cellulare"
-              >
-                Cellulare
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="tel"
-                name="cellulare"
-                id="cellulare"
-                placeholder="inserisci il tuo numero di telefono"
-                onChange={handleChange}
-                value={user.cellulare}
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="eta"
-              >
-                Età
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="number"
-                name="eta"
-                id="eta"
-                placeholder="inserisci la tua età"
-                onChange={handleChange}
-                value={user.eta}
-              />
-            </div>
-            <div>
-              <label
-                className="text-gray-800 font-semibold block my-3 text-md"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-                onChange={handleChange}
-                value={user.password}
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full mt-6 bg-sky-500 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"
-            >
-              Registrati
-            </button>
-            <div className="mt-6 text-center text-sm text-gray-600">
-              Sei già registrato?
-              <Link
-                to="/login"
-                className="text-indigo-600 hover:text-indigo-500 font-medium"
-              >
-                Login
-              </Link>
-            </div>
-          </form>
-        </div>
+      <div>
+        <label htmlFor="nome" className="text-gray-800 font-semibold block mb-2">
+          Nome
+        </label>
+        <input
+          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          type="text"
+          name="nome"
+          id="nome"
+          placeholder="Nome"
+          onChange={handleChange}
+          value={user.nome}
+        />
       </div>
+
+      <div>
+        <label htmlFor="cognome" className="text-gray-800 font-semibold block mb-2">
+          Cognome
+        </label>
+        <input
+          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          type="text"
+          name="cognome"
+          id="cognome"
+          placeholder="Cognome"
+          onChange={handleChange}
+          value={user.cognome}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="email" className="text-gray-800 font-semibold block mb-2">
+          Email
+        </label>
+        <input
+          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="@email"
+          onChange={handleChange}
+          value={user.email}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="cellulare" className="text-gray-800 font-semibold block mb-2">
+          Cellulare
+        </label>
+        <input
+          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          type="tel"
+          name="cellulare"
+          id="cellulare"
+          placeholder="Cellulare"
+          onChange={handleChange}
+          value={user.cellulare}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="eta" className="text-gray-800 font-semibold block mb-2">
+          Età
+        </label>
+        <input
+          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          type="number"
+          name="eta"
+          id="eta"
+          placeholder="Età"
+          onChange={handleChange}
+          value={user.eta}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="password" className="text-gray-800 font-semibold block mb-2">
+          Password
+        </label>
+        <input
+          className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          onChange={handleChange}
+          value={user.password}
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="col-span-1 lg:col-span-2 w-full mt-4 bg-sky-500 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold"
+      >
+        Registrati
+      </button>
+
+      <div className="col-span-1 lg:col-span-2 text-center text-sm text-gray-600 mt-2">
+        Sei già registrato?
+        <Link to="/login" className="text-indigo-600 hover:text-indigo-500 font-medium ml-1">
+          Login
+        </Link>
+       </div>
+      </form>
+    </div>
+   </div>
+
+
+
+       
+      
       {messaggioErrore && (
         <div
           id="popUp"
