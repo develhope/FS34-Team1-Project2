@@ -78,11 +78,6 @@ app.put("/registrazione/:id", (req, res) =>{
     (user) => user.id == id 
   );
   if(userExist){
-    // userExist.nome = nome;
-    // userExist.cognome = cognome;
-    // userExist.eta = eta;
-    // userExist.password = password;
-    // userExist.cellulare = cellulare;
     if (nome !== undefined) userExist.nome = nome;
     if (cognome !== undefined) userExist.cognome = cognome;
     if (eta !== undefined) userExist.eta = eta;
@@ -106,6 +101,22 @@ app.delete("/utente/:id", (req, res) => {
     return res.status(404).json({ message: "Id non trovato" });
   }
 })
+
+app.post("/acquisti", (req, res) => {
+  const { id, acquisto } = req.body;
+  const userExist = utenti.find((user) => user.id == id);
+  if (userExist) {
+    if (!userExist.acquisti) {
+      userExist.acquisti = [];
+    }
+    userExist.acquisti.push(acquisto);
+    return res
+      .status(200)
+      .json({ message: "Acquisto effettuato con successo", acquisti: userExist.acquisti });
+  } else {
+    return res.status(404).json({ message: "Id non trovato" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server avviato su http://localhost:${PORT}`);

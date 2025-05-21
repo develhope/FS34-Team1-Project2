@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Aside from "./Aside";
 import Navbar from "./Navbar";
 import { useAuth } from "../context/authContext";
+import non_ci_sono_acquisti from "../assets/non_ci_sono_acquisti.png";
 
 export default function MyOrders() {
   const [iMieiAcquisti, setImieiAcquisti] = useState(() => {
@@ -22,11 +23,13 @@ export default function MyOrders() {
 
       <div className="flex-1 ml-0 lg: p-8">
         <Aside />
-        <main className="flex-1 ml-0 lg:ml-64 p-8 mt-20 sm: ">
-          <h3 className="font-bold text-lg mb-10">I miei Acquisti</h3>
+        <main className="flex-1 ml-0 lg:ml-64 p-8 sm: ">
+
+          { ordiniUtente.length === 0 ? <img src={non_ci_sono_acquisti} alt="Non ci sono acquisti" className="w-1/2 mx-auto" /> : 
+          <h3 className="font-bold text-lg mb-10">I miei Acquisti</h3> }
 
           <ul className="space-y-6">
-            {ordiniUtente?.map((acquisto) => (
+            { ordiniUtente?.map((acquisto) => (
               <li key={acquisto.id} className="space-y-3 max max-w-2xl">
                 <h4 className="font-semibold text-lg">Ordine {acquisto.id}</h4>
                  
