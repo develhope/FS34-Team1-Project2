@@ -4,19 +4,42 @@ import Navbar from "./Navbar";
 import { useAuth } from "../context/authContext";
 import non_ci_sono_acquisti from "../assets/non_ci_sono_acquisti.png";
 
-export default function MyOrders() {
-  const [iMieiAcquisti, setImieiAcquisti] = useState(() => {
-    const iMieiAcquistiLocal = localStorage.getItem("iMieiAcquisti");
-    return iMieiAcquistiLocal ? JSON.parse(iMieiAcquistiLocal) : [];
-  });
-  const { user } = useAuth()
-   const ordiniUtente = iMieiAcquisti.filter(
-    (ordine) => ordine.userId === user.id)
-  
-  useEffect(() => {
-    localStorage.setItem("iMieiAcquisti", JSON.stringify(iMieiAcquisti));
-  }, [iMieiAcquisti]);
+export default  function MyOrders() {
 
+  const [iMieiAcquisti, setImieiAcquisti] = useState(null);
+  const [error, setError] = useState(null);
+  const { user } = useAuth()
+
+useEffect(() => {
+
+async function fetchAcquisti() {  
+   if (!user?.id) return;
+try {
+  const respose = await fetch(`http://localhost:3000/orders/${user.id}`,{
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  });
+   
+
+  const data = await respose.json();
+  
+  setImieiAcquisti(data.acquisti);
+  
+  
+} catch (error) {
+  setError("Errore durante il recupero degli acquisti");
+  
+}
+}
+fetchAcquisti();
+
+
+}, [user]);  
+
+ 
   return (
     <>
       <Navbar />
@@ -25,11 +48,11 @@ export default function MyOrders() {
         <Aside />
         <main className="flex-1 ml-0 lg:ml-64 p-8 sm: ">
 
-          { ordiniUtente.length === 0 ? <img src={non_ci_sono_acquisti} alt="Non ci sono acquisti" className="w-1/2 mx-auto" /> : 
+          { iMieiAcquisti == null ? <img src={non_ci_sono_acquisti} alt="Non ci sono acquisti" className="w-1/2 mx-auto" /> : 
           <h3 className="font-bold text-lg mb-10">I miei Acquisti</h3> }
 
           <ul className="space-y-6">
-            { ordiniUtente?.map((acquisto) => (
+            { iMieiAcquisti?.map((acquisto) => (
               <li key={acquisto.id} className="space-y-3 max max-w-2xl">
                 <h4 className="font-semibold text-lg">Ordine {acquisto.id}</h4>
                  

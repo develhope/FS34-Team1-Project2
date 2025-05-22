@@ -6,7 +6,8 @@ import Navbar from "./Navbar";
 
 export default function Registrazione() {
   const { registrazione, error, validate } = useAuth();
-  const [messaggioErrore, setMessaggioErrore] = useState(null)
+  const [messaggio, setMessaggio] = useState(null)
+  
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -38,9 +39,12 @@ export default function Registrazione() {
     const result = await registrazione(user);
 
     if (!result.esito) {
-      setMessaggioErrore(result.messaggio);
+      setMessaggio(result.messaggio);
     } else {
+      setMessaggio("Registrazione avvenuta con successo");
+      setTimeout(() => {
       navigate("/login");
+      }, 2000);
     }
   }
   return (
@@ -167,13 +171,13 @@ export default function Registrazione() {
 
        
       
-      {messaggioErrore && (
+      {messaggio && (
         <div
           id="popUp"
           className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50"
         >
           <button
-            onClick={(e) => setMessaggioErrore(null)}
+            onClick={(e) => setMessaggio(null)}
             className="text-gray-500 hover:text-gray-700 focus:outline-none"
           >
             <svg
@@ -192,11 +196,12 @@ export default function Registrazione() {
             </svg>
           </button>
           <p className=" py-5 px-10 font-medium text-black text-lg">
-            {messaggioErrore}
+            {messaggio}
           </p>
           <div className="sezBtnAlert"></div>
         </div>
       )}
+
     </>
   );
 }

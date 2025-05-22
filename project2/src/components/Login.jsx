@@ -4,7 +4,7 @@ import { useAuth } from "../context/authContext";
 import Navbar from "./Navbar";
 
 export default function Login() {
-  const [messaggioErrore, setMessaggioErrore] = useState(null);
+  const [messaggio, setMessaggio] = useState(null);
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { login, error } = useAuth();
@@ -17,14 +17,16 @@ export default function Login() {
     try {
       const result = await login(user);
       if (result?.esito) {
-        
+        setMessaggio("Login avvenuto con successo!");
+        setTimeout(() => {
         navigate("/profilo");
+        }, 2000);
        } 
        else {
-        setMessaggioErrore(result.messaggio);
+        setMessaggio(result.messaggio);
       }
       }catch (error) {
-      console.log(`errore: ${result.messaggio}`);
+      setMessaggio(`errore: ${result.messaggio}`);
      
     }  
   }
@@ -82,19 +84,20 @@ export default function Login() {
             </Link>
           </div>
         </div>
-        {messaggioErrore && (
+        {messaggio && (
           <div
             id="popUp"
-            className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50"
+            className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50 min-w-[300px]"
+            
           >
             <button
-              onClick={(e) => setMessaggioErrore(null)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={(e) => setMessaggio(null)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 "
             >
               ✖
             </button>
-            <p className=" py-5 px-10 font-medium text-black text-lg">
-              {messaggioErrore}
+            <p className="text-2xl text-center text-blue-300 font-bold">
+              {messaggio}
             </p>
             <div className="sezBtnAlert"></div>
           </div>

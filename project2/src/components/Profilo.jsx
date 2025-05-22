@@ -59,7 +59,7 @@ export default function Dashboard() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/utente/${user.id}`, {
+      const response = await fetch(`http://localhost:3000/users/${user.id}`, {
         method: "DELETE",
         headers: { "Content-type": "application/json" },
       });

@@ -14,10 +14,7 @@ export default function CheckOut() {
     dataScadenza:""
   });
   
-  const [iMieiAcquisti, setImieiAcquisti] = useState(() => {
-    const iMieiAcquistiLocal = localStorage.getItem("iMieiAcquisti");
-    return iMieiAcquistiLocal ? JSON.parse(iMieiAcquistiLocal) : [];
-  });
+  const [iMieiAcquisti, setImieiAcquisti] = useState([])
   useEffect(() => {
     localStorage.setItem("iMieiAcquisti", JSON.stringify(iMieiAcquisti));
   }, [iMieiAcquisti]);
@@ -40,7 +37,8 @@ export default function CheckOut() {
     const prodottiLocal = localStorage.getItem("prodotti");
     return prodottiLocal ? JSON.parse(prodottiLocal) : [];
   });
-  function handleSubmit(event) {
+
+  async function handleSubmit(event) {
     event.preventDefault();
     const { numeroCarta, nomeTitolare, dataScadenza, cvc } = pagamento;
 
@@ -74,6 +72,14 @@ export default function CheckOut() {
     setErrori(errors);
     return;
   }
+  try{
+    const response = await fetch("http://localhost:3000/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, prodotti }),
+    });
     setErrori([])
     setMessaggio("Ordine effettuato con successo!");
     setImieiAcquisti((prev)=> [...prev, {  userId, ...prodotti }])
@@ -88,8 +94,12 @@ export default function CheckOut() {
       localStorage.removeItem("prodotti");
       
       navigate("/ordinesuccesso")
-    
   }
+  catch (error) {
+    console.error("Errore durante l'invio dei dati:", error);
+    setMessaggio("Si è verificato un errore durante l'invio dei dati.");
+  }
+}
 
   return (
     <>

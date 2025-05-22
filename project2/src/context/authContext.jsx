@@ -22,7 +22,7 @@ export default function AuthProvider({ children }) {
 
   async function login({ email, password }) {
      try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -63,7 +63,7 @@ async  function registrazione(userData) {
     };};
     try {
    
-      const response = await fetch("http://localhost:3000/registrazione", {
+      const response = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(userData),

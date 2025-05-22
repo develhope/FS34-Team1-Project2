@@ -9,17 +9,17 @@ app.use(express.json());
 
 const utenti = [];
 
-app.get("/", (req, res) => {
+app.get("/users", (req, res) => {
   if (utenti) {
     res.json(utenti);
   } else if (utenti.length) {
-    res.status(404).send("errore utente non trovato");
+    res.status(404).send("errore utenti non trovato");
   } else {
     res.status(404).send("errore la pagina non è stata trovata");
   }
 });
 
-app.post("/registrazione", (req, res) => {
+app.post("/users/register", (req, res) => {
   const { nome, cognome, email, eta, password, cellulare } = req.body;
   const userExist = utenti.find(
     (user) => user.email.toLowerCase() === email.toLowerCase()
@@ -41,7 +41,7 @@ app.post("/registrazione", (req, res) => {
   }
 });
 
-app.post("/login", (req, res) => {
+app.post("/users/login", (req, res) => {
   const { email, password } = req.body;
   if (email && password) {
     const userExist = utenti.find(
@@ -61,7 +61,7 @@ app.post("/login", (req, res) => {
   }
 });
 
-app.get("/registrazione/:id", (req, res) => {
+app.get("/users/:id", (req, res) => {
   const { id } = req.params;
   const users = utenti.find((user) => user.id == id);
   if (users) {
@@ -71,7 +71,7 @@ app.get("/registrazione/:id", (req, res) => {
   }
 });
 
-app.put("/registrazione/:id", (req, res) =>{
+app.put("/users/update/:id", (req, res) =>{
   const {id} = req.params
   const { nome, cognome, eta, password, cellulare } = req.body;
   const userExist = utenti.find(
@@ -91,7 +91,7 @@ app.put("/registrazione/:id", (req, res) =>{
   }      
 })
 
-app.delete("/utente/:id", (req, res) => {
+app.delete("/users/delete/:id", (req, res) => {
   const { id } = req.params;
   const userIndex = utenti.findIndex((user) => user.id == id);
   if (userIndex !== -1) {
@@ -102,17 +102,31 @@ app.delete("/utente/:id", (req, res) => {
   }
 })
 
-app.post("/acquisti", (req, res) => {
-  const { id, acquisto } = req.body;
-  const userExist = utenti.find((user) => user.id == id);
+app.post("/orders", (req, res) => {
+  const { userId, prodotti } = req.body;
+  const userExist = utenti.find((user) => user.id == userId);
   if (userExist) {
     if (!userExist.acquisti) {
       userExist.acquisti = [];
     }
-    userExist.acquisti.push(acquisto);
+    userExist.acquisti.push(prodotti);
     return res
       .status(200)
       .json({ message: "Acquisto effettuato con successo", acquisti: userExist.acquisti });
+  } else {
+    return res.status(404).json({ message: "Id non trovato" });
+  }
+});
+
+app.get("/orders/:id", (req, res) => {
+  const { id } = req.params;
+  const userExist = utenti.find((user) => user.id == id);
+  if (userExist) {
+    if (userExist.acquisti) {
+      return res.status(200).json({ acquisti: userExist.acquisti });
+    } else {
+      return res.status(404).json({ message: "Nessun acquisto trovato" });
+    }
   } else {
     return res.status(404).json({ message: "Id non trovato" });
   }
