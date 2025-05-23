@@ -147,15 +147,15 @@ export default function Dashboard() {
             </button>
             {apriMod && (
               <div
-                className="fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm transition-opacity duration-300"
+                className="fixed inset-0 z-[999]  flex items-center justify-center bg-trasparent bg-opacity-60 backdrop-blur-sm transition-opacity duration-300 overflow-y-auto  scrollbar-hidden"
                 onClick={() => setApriMod(false)} // clic fuori chiude il modale
               >
                 <div
-                  className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-lg bg-white shadow-lg"
+                  className="relative w-full max-w-md overflow-y-auto rounded-lg bg-white shadow-lg scrollbar-hiddent mt-24"
                   onClick={(e) => e.stopPropagation()} // evita chiusura cliccando dentro
                 >
                   <div className="relative flex flex-col">
-                    <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-slate-800">
+                    <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-blue-300">
                       <h3 className="text-2xl">Modifica Profilo</h3>
                     </div>
                     <div className="flex flex-col gap-4 p-6">
@@ -240,7 +240,7 @@ export default function Dashboard() {
                       <button
                         type="button"
                         onClick={handleSubmit}
-                        className="w-full rounded-md bg-slate-800 py-2 px-4 text-center text-sm text-white transition-all shadow-md hover:shadow-lg"
+                        className="w-full rounded-md bg-blue-300 py-2 px-4 text-center text-sm text-white transition-all shadow-md hover:shadow-lg"
                       >
                         Salva Modifiche
                       </button>
