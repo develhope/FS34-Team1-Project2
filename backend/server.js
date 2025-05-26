@@ -9,18 +9,13 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-
-
 app.get("/users", async (req, res) => {
   try {
-      const db = await dataBase.many('SELECT * FROM users');  
-      res.status(200).json(users)
-   
+    const db = await db.query("SELECT * FROM users");
+    res.status(200).json(users);
   } catch (error) {
     res.status(404).send("errore la pagina non è stata trovata");
   }
-  
- 
 });
 
 app.post("/users/register", (req, res) => {
@@ -75,25 +70,23 @@ app.get("/users/:id", (req, res) => {
   }
 });
 
-app.put("/users/update/:id", (req, res) =>{
-  const {id} = req.params
+app.put("/users/update/:id", (req, res) => {
+  const { id } = req.params;
   const { nome, cognome, eta, password, cellulare } = req.body;
-  const userExist = users.find(
-    (user) => user.id == id 
-  );
-  if(userExist){
+  const userExist = users.find((user) => user.id == id);
+  if (userExist) {
     if (nome !== undefined) userExist.nome = nome;
     if (cognome !== undefined) userExist.cognome = cognome;
     if (eta !== undefined) userExist.eta = eta;
     if (cellulare !== undefined) userExist.cellulare = cellulare;
     if (password !== undefined) userExist.password = password;
     return res
-          .status(200)
-          .json({ message: "Modifica effettuata con successo", user: userExist });
+      .status(200)
+      .json({ message: "Modifica effettuata con successo", user: userExist });
   } else {
     return res.status(404).json({ message: "Id non trovato" });
-  }      
-})
+  }
+});
 
 app.delete("/users/delete/:id", (req, res) => {
   const { id } = req.params;
@@ -104,7 +97,7 @@ app.delete("/users/delete/:id", (req, res) => {
   } else {
     return res.status(404).json({ message: "Id non trovato" });
   }
-})
+});
 
 app.post("/orders", (req, res) => {
   const { userId, prodotti } = req.body;
@@ -114,9 +107,10 @@ app.post("/orders", (req, res) => {
       userExist.acquisti = [];
     }
     userExist.acquisti.push(prodotti);
-    return res
-      .status(200)
-      .json({ message: "Acquisto effettuato con successo", acquisti: userExist.acquisti });
+    return res.status(200).json({
+      message: "Acquisto effettuato con successo",
+      acquisti: userExist.acquisti,
+    });
   } else {
     return res.status(404).json({ message: "Id non trovato" });
   }
