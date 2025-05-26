@@ -10,11 +10,11 @@ app.use(express.json());
 
 app.get("/users", async (req, res) => {
   try {
-<<<<<<< HEAD
+
     const [users] = await db.execute("SELECT * FROM users");
-=======
+
     const db = await db.query("SELECT * FROM users");
->>>>>>> 28616e5670c493046225d7e88783fd97346b62a0
+
     res.status(200).json(users);
   } catch (error) {
     res.status(500).send("Errore nel recupero utenti");
@@ -76,7 +76,6 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 app.put("/users/update/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, cognome, eta, password, cellulare } = req.body;
@@ -84,7 +83,7 @@ app.put("/users/update/:id", async (req, res) => {
   try {
     const fields = [];
     const values = [];
-=======
+
 app.put("/users/update/:id", (req, res) => {
   const { id } = req.params;
   const { nome, cognome, eta, password, cellulare } = req.body;
@@ -113,13 +112,13 @@ app.delete("/users/delete/:id", (req, res) => {
     return res.status(404).json({ message: "Id non trovato" });
   }
 });
->>>>>>> 28616e5670c493046225d7e88783fd97346b62a0
+
 
     if (nome) {
       fields.push("nome = ?");
       values.push(nome);
     }
-<<<<<<< HEAD
+
     if (cognome) {
       fields.push("cognome = ?");
       values.push(cognome);
@@ -149,7 +148,7 @@ app.delete("/users/delete/:id", (req, res) => {
     res.status(200).json({ message: "Modifica effettuata con successo" });
   } catch (error) {
     res.status(500).json({ message: "Errore durante l'aggiornamento" });
-=======
+
     userExist.acquisti.push(prodotti);
     return res.status(200).json({
       message: "Acquisto effettuato con successo",
@@ -157,7 +156,7 @@ app.delete("/users/delete/:id", (req, res) => {
     });
   } else {
     return res.status(404).json({ message: "Id non trovato" });
->>>>>>> 28616e5670c493046225d7e88783fd97346b62a0
+
   }
 });
 
