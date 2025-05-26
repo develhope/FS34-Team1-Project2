@@ -1,10 +1,12 @@
-import mysql from 'mysql2/promise';
+import pgPromise from "pg-promise";
 
-
+const dataBase = pgPromise();
 const db = dataBase({
   host: "localhost",
-  port: 80,
-  database: celestique
+  port: 5432,
+  database: "celestique",
+  password: "postgres",
+  user: "postgres",
 });
 
 db.none(
@@ -12,10 +14,10 @@ db.none(
 id SERIAL PRIMARY KEY, 
 nome VARCHAR NOT NULL, 
 cognome VARCHAR NOT NULL, 
-email VARCHAR NOT NULL UNIQUE
+email VARCHAR NOT NULL UNIQUE,
 eta INT NOT NULL , 
 password VARCHAR NOT NULL,
-cellulare VARCHAR NOT NULL,
+cellulare VARCHAR NOT NULL
 )`
 )
   .then(() => console.log("Tabella creata correttamente"))
