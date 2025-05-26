@@ -10,7 +10,11 @@ app.use(express.json());
 
 app.get("/users", async (req, res) => {
   try {
+<<<<<<< HEAD
     const [users] = await db.execute("SELECT * FROM users");
+=======
+    const db = await db.query("SELECT * FROM users");
+>>>>>>> 28616e5670c493046225d7e88783fd97346b62a0
     res.status(200).json(users);
   } catch (error) {
     res.status(500).send("Errore nel recupero utenti");
@@ -72,6 +76,7 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 app.put("/users/update/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, cognome, eta, password, cellulare } = req.body;
@@ -79,11 +84,42 @@ app.put("/users/update/:id", async (req, res) => {
   try {
     const fields = [];
     const values = [];
+=======
+app.put("/users/update/:id", (req, res) => {
+  const { id } = req.params;
+  const { nome, cognome, eta, password, cellulare } = req.body;
+  const userExist = users.find((user) => user.id == id);
+  if (userExist) {
+    if (nome !== undefined) userExist.nome = nome;
+    if (cognome !== undefined) userExist.cognome = cognome;
+    if (eta !== undefined) userExist.eta = eta;
+    if (cellulare !== undefined) userExist.cellulare = cellulare;
+    if (password !== undefined) userExist.password = password;
+    return res
+      .status(200)
+      .json({ message: "Modifica effettuata con successo", user: userExist });
+  } else {
+    return res.status(404).json({ message: "Id non trovato" });
+  }
+});
+
+app.delete("/users/delete/:id", (req, res) => {
+  const { id } = req.params;
+  const userIndex = users.findIndex((user) => user.id == id);
+  if (userIndex !== -1) {
+    users.splice(userIndex, 1);
+    return res.status(200).json({ message: "Utente eliminato con successo" });
+  } else {
+    return res.status(404).json({ message: "Id non trovato" });
+  }
+});
+>>>>>>> 28616e5670c493046225d7e88783fd97346b62a0
 
     if (nome) {
       fields.push("nome = ?");
       values.push(nome);
     }
+<<<<<<< HEAD
     if (cognome) {
       fields.push("cognome = ?");
       values.push(cognome);
@@ -113,6 +149,15 @@ app.put("/users/update/:id", async (req, res) => {
     res.status(200).json({ message: "Modifica effettuata con successo" });
   } catch (error) {
     res.status(500).json({ message: "Errore durante l'aggiornamento" });
+=======
+    userExist.acquisti.push(prodotti);
+    return res.status(200).json({
+      message: "Acquisto effettuato con successo",
+      acquisti: userExist.acquisti,
+    });
+  } else {
+    return res.status(404).json({ message: "Id non trovato" });
+>>>>>>> 28616e5670c493046225d7e88783fd97346b62a0
   }
 });
 
