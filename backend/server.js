@@ -10,11 +10,7 @@ app.use(express.json());
 
 app.get("/users", async (req, res) => {
   try {
-
     const [users] = await db.execute("SELECT * FROM users");
-
-    const db = await db.query("SELECT * FROM users");
-
     res.status(200).json(users);
   } catch (error) {
     res.status(500).send("Errore nel recupero utenti");
@@ -84,41 +80,10 @@ app.put("/users/update/:id", async (req, res) => {
     const fields = [];
     const values = [];
 
-app.put("/users/update/:id", (req, res) => {
-  const { id } = req.params;
-  const { nome, cognome, eta, password, cellulare } = req.body;
-  const userExist = users.find((user) => user.id == id);
-  if (userExist) {
-    if (nome !== undefined) userExist.nome = nome;
-    if (cognome !== undefined) userExist.cognome = cognome;
-    if (eta !== undefined) userExist.eta = eta;
-    if (cellulare !== undefined) userExist.cellulare = cellulare;
-    if (password !== undefined) userExist.password = password;
-    return res
-      .status(200)
-      .json({ message: "Modifica effettuata con successo", user: userExist });
-  } else {
-    return res.status(404).json({ message: "Id non trovato" });
-  }
-});
-
-app.delete("/users/delete/:id", (req, res) => {
-  const { id } = req.params;
-  const userIndex = users.findIndex((user) => user.id == id);
-  if (userIndex !== -1) {
-    users.splice(userIndex, 1);
-    return res.status(200).json({ message: "Utente eliminato con successo" });
-  } else {
-    return res.status(404).json({ message: "Id non trovato" });
-  }
-});
-
-
     if (nome) {
       fields.push("nome = ?");
       values.push(nome);
     }
-
     if (cognome) {
       fields.push("cognome = ?");
       values.push(cognome);
@@ -148,15 +113,6 @@ app.delete("/users/delete/:id", (req, res) => {
     res.status(200).json({ message: "Modifica effettuata con successo" });
   } catch (error) {
     res.status(500).json({ message: "Errore durante l'aggiornamento" });
-
-    userExist.acquisti.push(prodotti);
-    return res.status(200).json({
-      message: "Acquisto effettuato con successo",
-      acquisti: userExist.acquisti,
-    });
-  } else {
-    return res.status(404).json({ message: "Id non trovato" });
-
   }
 });
 
