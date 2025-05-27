@@ -1,4 +1,5 @@
 import pgPromise from "pg-promise";
+import pgPromise from "pg-promise";
 
 const dataBase = pgPromise();
 const db = dataBase({
@@ -10,7 +11,7 @@ const db = dataBase({
 });
 
 db.none(
-` CREATE TABLE IF NOT EXISTS users (
+  ` CREATE TABLE IF NOT EXISTS users (
 id SERIAL PRIMARY KEY, 
 nome VARCHAR NOT NULL, 
 cognome VARCHAR NOT NULL, 
@@ -21,7 +22,7 @@ cellulare VARCHAR NOT NULL
 )`
 )
   .then(() => console.log("Tabella creata correttamente"))
-  
+
   .catch((error) =>
     console.error("Errore durante la creazione della tabella", error)
   );
