@@ -78,8 +78,10 @@ export default function CheckOut() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId, prodotti }),
+      // body: JSON.stringify({ userId, prodotti }),
+      body: JSON.stringify({ userId, products: prodotti.map(p => p.id) }),
     });
+    console.log("Dati inviati:", { userId, products: prodotti.map(p => p.id) })
     setErrori([])
     setMessaggio("Ordine effettuato con successo!");
     setImieiAcquisti((prev)=> [...prev, {  userId, ...prodotti }])
@@ -189,3 +191,5 @@ export default function CheckOut() {
     </>
   );
 }
+
+

@@ -41,7 +41,7 @@ app.post("/users/register", async (req, res) => {
 app.post("/users/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const users = await dataBase.one("SELECT * FROM users WHERE email = $1 AND password = $2", [email, password] )
+    const userExist = await dataBase.one("SELECT * FROM users WHERE email = $1 AND password = $2", [email, password] )
     return res
         .status(200)
         .json({ message: "login effettuato con successo", user: userExist });
@@ -96,37 +96,58 @@ app.delete("/users/delete/:id", async (req, res) => {
 });
 
 app.post("/orders", async (req, res) => {
-  const { userId, prodotti } = req.body;
-  try{
-  const userExist = await dataBase.oneOrNone("SELECT * FROM users WHERE id = $1", [userId]);
-  if (userExist) {
-    if (!userExist.acquisti) {
-      userExist.acquisti = [];
-    }else{
-      await dataBase.many("UPDATE users SET acquisti = $1 WHERE id = $2", [userExist.acquisti, userId]);
-      return res
-        .status(200)
-        .json({
-          message: "Acquisto effettuato con successo",
-          acquisti: userExist.acquisti,
-        });
-    }
-  }} catch (error) {
-    return res.status(404).json({ error: error.message });
+  const { userId, products } = req.body;
+
+  console.log("BODY ricevuto:", req.body); 
+
+  if (!userId || !products || !Array.isArray(products)) {
+    return res.status(400).json({ error: "Dati non validi" });
+  }
+
+  try {
+    await dataBase.none(
+      `INSERT INTO orders (user_id, products) VALUES ($1, $2)`,
+      [userId, JSON.stringify(products)] // per il JSONB
+    );
+    res.status(201).json({ message: "Ordine creato con successo" });
+  } catch (error) {
+    console.error("Errore durante l'inserimento ordine:", error);
+    res.status(500).json({ error: "Errore interno del server" });
   }
 });
 
+
+
+
 app.get("/orders/:id", async (req, res) => {
   const { id } = req.params;
-  try{
-    const userExist = await dataBase.oneOrNone("SELECT * FROM users WHERE id = $1", [id]);
-    if (userExist.acquisti) {
-      return res.status(200).json({ acquisti: userExist.acquisti });
-    } else {
-      return res.status(404).json({ message: "Nessun acquisto trovato" });
+
+  try {
+     
+    const orders = await dataBase.any("SELECT * FROM orders WHERE user_id = $1", [id]);
+
+    if (orders.length === 0) {
+      return res.status(404).json({ message: "Nessun ordine trovato per questo utente" });
     }
+   
+    return res.status(200).json({ orders });
   } catch (error) {
-    return res.status(404).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/products/:id', async (req, res) => {
+  const productId = req.params.id;
+  try {
+    const product = await dataBase.oneOrNone('SELECT * FROM products WHERE id = $1', [productId]);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ error: 'Prodotto non trovato' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Errore del server' });
   }
 });
 

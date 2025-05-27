@@ -49,5 +49,18 @@ db.none(
     console.error("Errore durante la creazione della tabella products", error)
   );
 
+db.none(
+  `CREATE TABLE IF NOT EXISTS orders (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  products JSONB NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)`
+)
+.then(() => console.log("Tabella orders creata correttamente"))
+
+  .catch((error) =>
+    console.error("Errore durante la creazione della tabella orders", error)
+  );
 
 export default db;
