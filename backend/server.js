@@ -68,58 +68,65 @@ app.put("/users/update/:id", async (req, res) => {
   try {
     const userExist = await dataBase.none("UPDATE users SET nome=$1, cognome=$2, eta=$3, password=$4, cellulare=$5 WHERE id =$6  ", [
       nome, cognome, eta, password, cellulare, id]);
+       const updatedUser = await dataBase.one(
+      "SELECT id, nome, cognome, eta, cellulare FROM users WHERE id = $1",
+      [id]
+    );
+
       return res
         .status(200)
-        .json({ message: "Modifica effettuata con successo", user: userExist });
+        .json({ message: "Modifica effettuata con successo", user: updatedUser });
     
-    // }
+   
   } catch (error) {
      return res.status(400).json({errore: error.message });
   }
 
 });
 
-app.delete("/users/delete/:id", (req, res) => {
+app.delete("/users/delete/:id", async (req, res) => {
   const { id } = req.params;
-  const userIndex = users.findIndex((user) => user.id == id);
-  if (userIndex !== -1) {
-    users.splice(userIndex, 1);
+  try {
+    await dataBase.none("DELETE FROM users WHERE id = $1", [id]);
     return res.status(200).json({ message: "Utente eliminato con successo" });
-  } else {
-    return res.status(404).json({ message: "Id non trovato" });
+  
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
   }
 });
 
-app.post("/orders", (req, res) => {
+app.post("/orders", async (req, res) => {
   const { userId, prodotti } = req.body;
-  const userExist = users.find((user) => user.id == userId);
+  try{
+  const userExist = await dataBase.oneOrNone("SELECT * FROM users WHERE id = $1", [userId]);
   if (userExist) {
     if (!userExist.acquisti) {
       userExist.acquisti = [];
+    }else{
+      await dataBase.many("UPDATE users SET acquisti = $1 WHERE id = $2", [userExist.acquisti, userId]);
+      return res
+        .status(200)
+        .json({
+          message: "Acquisto effettuato con successo",
+          acquisti: userExist.acquisti,
+        });
     }
-    userExist.acquisti.push(prodotti);
-    return res
-      .status(200)
-      .json({
-        message: "Acquisto effettuato con successo",
-        acquisti: userExist.acquisti,
-      });
-  } else {
-    return res.status(404).json({ message: "Id non trovato" });
+  }} catch (error) {
+    return res.status(404).json({ error: error.message });
   }
 });
 
-app.get("/orders/:id", (req, res) => {
+app.get("/orders/:id", async (req, res) => {
   const { id } = req.params;
-  const userExist = users.find((user) => user.id == id);
-  if (userExist) {
+  try{
+    const userExist = await dataBase.oneOrNone("SELECT * FROM users WHERE id = $1", [id]);
     if (userExist.acquisti) {
       return res.status(200).json({ acquisti: userExist.acquisti });
     } else {
       return res.status(404).json({ message: "Nessun acquisto trovato" });
     }
-  } else {
-    return res.status(404).json({ message: "Id non trovato" });
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
   }
 });
 
