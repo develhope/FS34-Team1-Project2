@@ -52,6 +52,8 @@ app.post("/users/login", async (req, res) => {
         nome: users.nome,
         cognome: users.cognome,
         email: users.email,
+        eta: users.eta,
+        cellulare: users.cellulare,
       },
     });
   } catch (error) {
@@ -100,10 +102,21 @@ app.put("/users/update/:id", async (req, res) => {
   const { id } = req.params;
   const { nome, cognome, eta, password, cellulare } = req.body;
   try {
+     const currentUser = await dataBase.one(
+      "SELECT nome, cognome, eta, password, cellulare FROM users WHERE id = $1",
+      [id]
+    );
+    
     const userExist = await dataBase.none(
       "UPDATE users SET nome=$1, cognome=$2, eta=$3, password=$4, cellulare=$5 WHERE id =$6  ",
       [nome, cognome, eta, password, cellulare, id]
     );
+    const updatedNome = nome ?? currentUser.nome;
+    const updatedCognome = cognome ?? currentUser.cognome;
+    const updatedEta = eta ?? currentUser.eta;
+    const updatedPassword = password ?? currentUser.password;
+    const updatedCellulare = cellulare ?? currentUser.cellulare;
+
     const updatedUser = await dataBase.one(
       "SELECT id, nome, cognome, eta, cellulare FROM users WHERE id = $1",
       [id]
@@ -133,7 +146,7 @@ app.post("/orders", async (req, res) => {
 
   console.log("BODY ricevuto:", req.body); 
 
-  if (!userId || !products || !Array.isArray(products)) {
+  if (!userId || !products ) {
     return res.status(400).json({ error: "Dati non validi" });
   }
 
