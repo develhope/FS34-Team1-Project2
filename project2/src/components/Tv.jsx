@@ -3,7 +3,7 @@ import useSWR from "swr";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Loading from "./Loading";
 export default function Tv() {
   const [idPro, setIdPro] = useState(null);
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function Tv() {
     "https://fakestoreapi.in/api/products?limit=150"
   );
   const products = data;
-  if (!data && !error) return <p>Loading...</p>;
+  if (!data && !error) return <Loading></Loading>;
   if (error) return <p>Errore nel caricamento dei dati</p>;
   function handleAggiungiProdotto(prodotto) {
     setProdotti((prev) => [...prev, prodotto]);

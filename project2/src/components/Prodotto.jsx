@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import Navbar from "./Navbar";
+import Loading from "./Loading";
 
 export default function Prodotto() {
   const [messaggio, setMessaggio] = useState(null);
@@ -18,7 +19,7 @@ export default function Prodotto() {
   const { error, data, isLoading } = useSWR(
     `https://fakestoreapi.in/api/products/${id}`
   );
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
   if (error) return <p>Errore nel caricamento dei dati</p>;
   const prodotto = data.product;
   console.log(prodotto);

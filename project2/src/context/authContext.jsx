@@ -21,7 +21,7 @@ export default function AuthProvider({ children }) {
   }, [users]);
 
   async function login({ email, password }) {
-     try {
+    try {
       const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -32,18 +32,21 @@ export default function AuthProvider({ children }) {
       if (response.ok) {
         setUser(result.user);
         setError(null);
-        console.log(user);
+        localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
         return { esito: true, messaggio: "Credenziali ok" };
-      }else{
-      console.log("user not found");
-      setUser(null);
-      return { esito: false, messaggio: "Credenziali errate" };
+      } else {
+        console.log("user not found");
+        setUser(null);
+        return { esito: false, messaggio: "Credenziali errate" };
       }
-    }catch (error) {
+    } catch (error) {
       console.error("Errore durante la richiesta:", error);
     }
+  }
 
+  function getToken() {
+    return localStorage.getItem("token");
   }
 
   function validate(password) {
@@ -51,18 +54,18 @@ export default function AuthProvider({ children }) {
     return pattern.test(password);
   }
 
-async  function registrazione(userData) {
-  if (!validate(userData.password)) {
-    setError(
-      "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
-    )
-    return {
-      esito: false,
-      messaggio:
-      "La password deve contenere almeno 8 caratteri, una lettera maiuscola, un carattere speciale ed almeno un numero.",
-    };};
+  async function registrazione(userData) {
+    if (!validate(userData.password)) {
+      setError(
+        "La password deve contenere almeno 8 caretteri, una lettera maiuscola, un carattere speciale ed alemno un numero."
+      );
+      return {
+        esito: false,
+        messaggio:
+          "La password deve contenere almeno 8 caratteri, una lettera maiuscola, un carattere speciale ed almeno un numero.",
+      };
+    }
     try {
-   
       const response = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -73,14 +76,13 @@ async  function registrazione(userData) {
         setUsers((prev) => [...prev, userData]);
         setError(null);
         return { esito: true, messaggio: null };
-      }  
-      else {
-      setError("email già registrata");
-      return { esito: false, messaggio: "Email già registrata" };
+      } else {
+        setError("email già registrata");
+        return { esito: false, messaggio: "Email già registrata" };
       }
     } catch {
       setError("Errore durante la registrazione");
-       return { esito: false, messaggio: "Errore durante il login" };
+      return { esito: false, messaggio: "Errore durante il login" };
     }
   }
 
@@ -91,7 +93,17 @@ async  function registrazione(userData) {
 
   return (
     <AuthContext.Provider
-      value={{ user, users, login, registrazione, logout, error, validate , setUser}}
+      value={{
+        user,
+        users,
+        login,
+        registrazione,
+        logout,
+        error,
+        validate,
+        setUser,
+        getToken,
+      }}
     >
       {children}
     </AuthContext.Provider>

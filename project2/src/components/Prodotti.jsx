@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
-
+import Loading from "./Loading";
 export default function Prodotti() {
   const [idPro, setIdPro] = useState(null);
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function Prodotti() {
   const { error, data } = useSWR(
     "https://fakestoreapi.in/api/products?limit=150"
   );
-  if (!data && !error) return <p>Loading...</p>;
+  if (!data && !error) return <Loading></Loading>;
   if (error) return <p>Errore nel caricamento dei dati</p>;
   function handleAggiungiProdotto(prodotto) {
     setProdotti((prev) => [...prev, prodotto]);
