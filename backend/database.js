@@ -1,12 +1,13 @@
 import pgPromise from "pg-promise";
-
+import dotenv from "dotenv";
+dotenv.config();
 const dataBase = pgPromise();
 const db = dataBase({
   host: "localhost",
   port: 5432,
-  database: "celestique",
-  password: "postgres",
+  database: process.env.VITE_NOME_DATABASE,
   user: "postgres",
+  password: process.env.VITE_PASSWORD_DATABASE,
 });
 
 db.none(
@@ -43,7 +44,7 @@ db.none(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`
 )
- .then(() => console.log("Tabella products creata correttamente"))
+  .then(() => console.log("Tabella products creata correttamente"))
 
   .catch((error) =>
     console.error("Errore durante la creazione della tabella products", error)
@@ -57,7 +58,7 @@ db.none(
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )`
 )
-.then(() => console.log("Tabella orders creata correttamente"))
+  .then(() => console.log("Tabella orders creata correttamente"))
 
   .catch((error) =>
     console.error("Errore durante la creazione della tabella orders", error)
