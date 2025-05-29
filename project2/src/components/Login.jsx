@@ -19,24 +19,20 @@ export default function Login() {
       if (result?.esito) {
         setMessaggio("Login avvenuto con successo!");
         setTimeout(() => {
-        navigate("/profilo");
+          navigate("/profilo");
         }, 2000);
-       } 
-       else {
+      } else {
         setMessaggio(result.messaggio);
       }
-      }catch (error) {
+    } catch (error) {
       setMessaggio(`errore: ${result.messaggio}`);
-     
-    }  
+    }
   }
-      
-    
+
   return (
     <>
       <Navbar />
-       <div className="min-h-350px bg-white flex justify-center p-4 pt-10 ">
-
+      <div className="min-h-350px bg-white flex justify-center p-4 pt-10 ">
         <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             Login
@@ -88,7 +84,6 @@ export default function Login() {
           <div
             id="popUp"
             className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50 min-w-[300px]"
-            
           >
             <button
               onClick={(e) => setMessaggio(null)}
