@@ -24,17 +24,19 @@ export default function Dashboard() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-         if (mod.password) {
-    const passwordRegole = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    if (!passwordRegole.test(mod.password)) {
-      setError("La password deve contenere almeno 8 caratteri, una lettera maiuscola, un numero e un carattere speciale.");
-      return;
+    if (mod.password) {
+      const passwordRegole = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+      if (!passwordRegole.test(mod.password)) {
+        setError(
+          "La password deve contenere almeno 8 caratteri, una lettera maiuscola, un numero e un carattere speciale."
+        );
+        return;
+      }
     }
-  }
 
     try {
       const response = await fetch(
-        `http://localhost:3000/registrazione/${user.id}`,
+        `http://localhost:3000/users/update/${user.id}`,
         {
           method: "PUT",
           headers: { "Content-type": "application/json" },
@@ -42,7 +44,7 @@ export default function Dashboard() {
         }
       );
       const result = await response.json();
-      
+
       setMessage("modifica effettuata con successo");
       localStorage.setItem("user", JSON.stringify(result.user));
       setUser(result.user);
@@ -247,36 +249,36 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-                       {error && (
-        <div
-          id="popUp"
-          className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50"
-        >
-          <button
-            onClick={(e) => setError(null)}
-            className="text-gray-500 hover:text-gray-700 focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <p className=" py-5 px-10 font-medium text-black text-lg">
-            {error}
-          </p>
-          <div className="sezBtnAlert"></div>
-        </div>
-      )}
+                {error && (
+                  <div
+                    id="popUp"
+                    className=" shadow-xl flex items-center justify-center z-50 bg-black bg-opacity-50"
+                  >
+                    <button
+                      onClick={(e) => setError(null)}
+                      className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                    <p className=" py-5 px-10 font-medium text-black text-lg">
+                      {error}
+                    </p>
+                    <div className="sezBtnAlert"></div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -330,7 +332,6 @@ export default function Dashboard() {
               </div>
             )}
           </div>
-     
         </main>
       </div>
 
