@@ -2,10 +2,14 @@ import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import dataBase from "./database.js";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
 const secretKey = "celestique";
+const salt = parseInt(process.env.SALT )
 
 app.use(cors());
 app.use(express.json());
@@ -22,9 +26,10 @@ app.get("/users", async (req, res) => {
 app.post("/users/register", async (req, res) => {
   const { nome, cognome, email, eta, password, cellulare } = req.body;
   try {
+    const passwordCryptata = await bcrypt.hash(password, salt);
     await dataBase.none(
       "INSERT INTO users (nome, cognome, email, eta, password, cellulare) VALUES ($1, $2, $3, $4, $5, $6)",
-      [nome, cognome, email, eta, password, cellulare]
+      [nome, cognome, email, eta, passwordCryptata, cellulare]
     );
     return res.status(201).json({ message: "utente registrato con successo" });
   } catch (error) {
@@ -35,28 +40,36 @@ app.post("/users/register", async (req, res) => {
 app.post("/users/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const users = await dataBase.one(
-      "SELECT * FROM users WHERE email = $1 AND password = $2",
-      [email, password]
+    const user = await dataBase.oneOrNone(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
     );
-    const token = jwt.sign({ id: users.id, email: users.email }, secretKey, {
-      expiresIn: "1h",
-    });
-
-    return res.status(200).json({
-      message: "login effettuato con successo",
-      token,
-      user: {
-        id: users.id,
-        nome: users.nome,
-        cognome: users.cognome,
-        email: users.email,
-        eta: users.eta,
-        cellulare: users.cellulare,
-      },
-    });
+    if (user) {
+     const hashedPassword = user.password;
+     const isTrue = await bcrypt.compare(password, hashedPassword);
+     if( isTrue ){
+       const token = jwt.sign({ id: user.id, email: user.email }, secretKey, {
+         expiresIn: "1h", 
+        });
+        
+        return res.status(200).json({
+          message: "login effettuato con successo",
+          token,
+          user: {
+            id: user.id,
+            nome: user.nome,
+            cognome: user.cognome,
+            email: user.email,
+            eta: user.eta,
+            cellulare: user.cellulare,
+          },
+        });
+      }
+    }else{
+      return res.status(400).json({ message: "Credenziali non valide" });
+    }
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(404).json({ error: error.message });
   }
 });
 
@@ -80,7 +93,7 @@ app.get("/profilo", async (req, res) => {
         [decoded.email]
       );
 
-      res.status(200).json({ user: userExist });
+      res.status(200).json({user: userExist });
     });
   } catch (error) {
     return res.status(400).json({ message: error.message });

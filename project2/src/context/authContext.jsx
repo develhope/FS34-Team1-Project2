@@ -11,14 +11,14 @@ export default function AuthProvider({ children }) {
     return localUser ? JSON.parse(localUser) : null;
   });
 
-  const [users, setUsers] = useState(() => {
-    const localUsers = localStorage.getItem("users");
-    return localUsers ? JSON.parse(localUsers) : [];
-  });
+  // const [users, setUsers] = useState(() => {
+  //   const localUsers = localStorage.getItem("users");
+  //   return localUsers ? JSON.parse(localUsers) : [];
+  // });
 
-  useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-  }, [users]);
+  // useEffect(() => {
+  //   localStorage.setItem("users", JSON.stringify(users));
+  // }, [users]);
 
   async function login({ email, password }) {
     try {
@@ -73,7 +73,7 @@ export default function AuthProvider({ children }) {
       });
       const result = await response.json();
       if (response.ok) {
-        setUsers((prev) => [...prev, userData]);
+        // setUsers((prev) => [...prev, userData]);
         setError(null);
         return { esito: true, messaggio: null };
       } else {
@@ -95,7 +95,7 @@ export default function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         user,
-        users,
+        // users,
         login,
         registrazione,
         logout,
