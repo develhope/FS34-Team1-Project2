@@ -11,14 +11,6 @@ export default function AuthProvider({ children }) {
     return localUser ? JSON.parse(localUser) : null;
   });
 
-  // const [users, setUsers] = useState(() => {
-  //   const localUsers = localStorage.getItem("users");
-  //   return localUsers ? JSON.parse(localUsers) : [];
-  // });
-
-  // useEffect(() => {
-  //   localStorage.setItem("users", JSON.stringify(users));
-  // }, [users]);
 
   async function login({ email, password }) {
     try {
@@ -33,7 +25,7 @@ export default function AuthProvider({ children }) {
         setUser(result.user);
         setError(null);
         localStorage.setItem("token", result.token);
-        localStorage.setItem("user", JSON.stringify(result.user));
+        // localStorage.setItem("user", JSON.stringify(result.user));
         return { esito: true, messaggio: "Credenziali ok" };
       } else {
         console.log("user not found");
@@ -87,7 +79,7 @@ export default function AuthProvider({ children }) {
   }
 
   function logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setUser(null);
   }
 

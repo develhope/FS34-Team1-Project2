@@ -14,22 +14,7 @@ export default function Dashboard() {
   const [message, setMessage] = useState(null);
   const [delet, setDelet] = useState(false);
   const Navigazione = useNavigate();
-  // const [user, setUser] = useState(null)
-  // console.log(user)
 
-  //  useEffect(() => {
-  //   console.log(token)
-  //   fetch(`http://localhost:3000/profilo`, {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       setUser(result.user);
-
-  //       console.log(result.user);
-  //     })
-  //     .catch((error) => console.error(error));
-  // }, []);
 
   function handleChange(event) {
     setMod((prev) => ({
@@ -62,12 +47,8 @@ export default function Dashboard() {
       const result = await response.json();
 
       setMessage("modifica effettuata con successo");
-      localStorage.setItem("user", JSON.stringify(result.user));
       setUser(result.user);
-      Navigazione(0);
-      setTimeout(() => {
-        setApriMod(false);
-      }, 5000);
+         setApriMod(false);
     } catch (error) {
       console.error("error");
       setError("Modifica non riuscita");
@@ -84,14 +65,14 @@ export default function Dashboard() {
       const result = await response.json();
 
       setMessage("Account eliminato con successo");
-      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       setUser(null);
       logout();
       setTimeout(() => {
         Navigazione("/accounteliminato");
       }, 500);
 
-      localStorage.removeItem("user");
+      localStorage.removeItem("token");
     } catch (error) {
       console.error("error");
       setError("Eliminazione non riuscita");

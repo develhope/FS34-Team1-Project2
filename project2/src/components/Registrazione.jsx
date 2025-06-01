@@ -32,7 +32,7 @@ export default function Registrazione() {
     event.preventDefault();
     const validationError = await validate(user);
     if (validationError) {
-      setMessaggioErrore(error);
+      setMessaggio(error);
       return;
     }
 
