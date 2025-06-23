@@ -24,7 +24,7 @@ import AccountEliminato from "./components/AccountEliminato";
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/FS34-Team1-Project2">
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route
@@ -66,7 +66,10 @@ function App() {
           <Route path="/mobile" element={<Mobile />}></Route>
           <Route path="/tv" element={<Tv />}></Route>
           <Route path="/ordinesuccesso" element={<OrdineSuccesso />}></Route>
-          <Route path="/accounteliminato" element={<AccountEliminato />}></Route>
+          <Route
+            path="/accounteliminato"
+            element={<AccountEliminato />}
+          ></Route>
           <Route path="/prodotti" element={<Prodotti />}></Route>
           <Route path="/prodotti/:id" element={<Prodotto />} />
         </Routes>
