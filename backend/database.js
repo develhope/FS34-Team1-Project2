@@ -2,12 +2,15 @@ import pgPromise from "pg-promise";
 import dotenv from "dotenv";
 dotenv.config();
 const dataBase = pgPromise();
-const db = dataBase({
-  host: "localhost",
-  port: 5432,
-  database: process.env.VITE_NOME_DATABASE,
-  user: "postgres",
-  password: process.env.VITE_PASSWORD_DATABASE,
+const db = pgp({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT || 5432,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  ssl: {
+    rejectUnauthorized: false, // NECESSARIO per Render
+  },
 });
 
 db.none(
