@@ -21,4 +21,3 @@ async function cryptingPassword() {
   }
 }
 cryptingPassword();
-//  ATTENZIONE: NON ESEGUIRE PIù VOLTE
